@@ -1,43 +1,101 @@
-
+@font-face {
+  font-family: 'Avenir';
+  src: url('avenir_ff/AvenirLTStd-Book.otf');
+}
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+body{
+  background-color: #FFFFEA !important;
+  font-family: 'Open Sans';
+  font-weight: 300;
+  font-size: 20px;
+  color: #000000;
+
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+
+  margin-top: 80px;
+}
+
+.nav-item a{
+  color: black;
+  direction: none;
+  margin: 10px 0;
+}
+
+.navbar-inverse{
+  background: #FFFFEA;
+  border-color: #FFFFEA;
+  border: 1px solid black;
+}
+
+.navbar-inverse .navbar-nav > .active > a {
+  background-color: #FFFFEA;
+}
+
+.nav-link {
+  background: #FFFFEA;
+  background-color: #FFFFEA;
+}
+
+.navbar-inverse .navbar-brand{
+  color: #000000;
+  font-weight: bolder;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+#navbarText{
+  margin: 10px;
+}
+/* ====================================================================================== */
 
 * {
 	box-sizing: border-box;
 }
 
-body {
-	background: #FFFFEA;
+.body2 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Avenir', bolder;
 	height: 100vh;
 	margin: -20px 0 50px;
 }
 
 h1 {
+  font-family: 'Avenir', bolder;
 	font-weight: bold;
 	margin: 0;
+  padding-bottom:20px;
 }
 
 h2 {
+  font-family: 'Avenir',  bolder;
 	text-align: center;
 }
 
 p {
-	font-size: 14px;
+  font-family: 'Avenir', cursive;
+	font-size: 16px;
 	font-weight: 100;
 	line-height: 20px;
 	letter-spacing: 0.5px;
 	margin: 20px 0 30px;
 }
 
-span {
-	font-size: 12px;
+h5 {
+  font-family: 'Avenir', bolder;
+  font-weight: bold;
+  color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
 }
 
 a {
+  font-family: 'Avenir', cursive;
 	color: #333;
 	font-size: 14px;
 	text-decoration: none;
@@ -45,13 +103,13 @@ a {
 }
 
 button {
-	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+  font-family: 'Avenir', monospace;
+	border: 1px solid #8C52FF;
+	background-color: #8C52FF;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
-	padding: 12px 45px;
+	padding: 8px 35px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
@@ -108,7 +166,7 @@ input {
 	transition: all 0.6s ease-in-out;
 }
 
-.sign-in-container {
+.back-container {
 	left: 0;
 	width: 50%;
 	z-index: 2;
@@ -123,18 +181,18 @@ input {
 	background-color: #FFFFEA;
 }
 
-.container.right-panel-active .sign-in-container {
+.container.right-panel-active .back-container {
 	transform: translateX(100%);
 }
 
-.sign-up-container {
+.ask-container {
 	left: 0;
 	width: 50%;
 	opacity: 0;
 	z-index: 1;
 }
 
-.container.right-panel-active .sign-up-container {
+.container.right-panel-active .ask-container {
 	transform: translateX(100%);
 	opacity: 1;
 	z-index: 5;
@@ -170,8 +228,8 @@ input {
 
 .overlay {
 	background: #FFFFEA;
-	background: -webkit-linear-gradient(to right, #F4B2BF, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	background: -webkit-linear-gradient(to right, #8C52FF, #CB6CE6);
+	background: linear-gradient(to right, #CB6CE6, #8C52FF);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -220,21 +278,6 @@ input {
 	transform: translateX(20%);
 }
 
-.social-container {
-	margin: 20px 0;
-}
-
-.social-container a {
-	border: 1px solid #DDDDDD;
-	border-radius: 50%;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0 5px;
-	height: 40px;
-	width: 40px;
-}
-
 footer {
 	background-color: #FFFFEA;
 	color: #fff;
@@ -256,6 +299,6 @@ footer i {
 }
 
 footer a {
-	color: #3c97bf;
+	color: #943A3A;
 	text-decoration: none;
 }

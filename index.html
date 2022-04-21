@@ -24,56 +24,37 @@
   </head>
   <body>
     <!-- Nav Bar -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="title">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="justify-content: space-around">
+      <a class="navbar-brand" href="index.html">DenSaulyq</a>
           <img class ="title-icon" width="50" height="50" src="icons/icon1.png">
-        </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-#FFFFEA">
-  <a class="navbar-brand" href="#"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="login.html">Account</a>
-      </li>
-
-    <span class="navbar-text">
-      Help
-    </span>
-    </ul>
-  </div>
-</nav>
-        <div class="navbar-header">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="navbar-toggler-icon"></span>
           </button>
-         <a class="navbar-brand" href="#!">DenSaulyq</a>
-        </div>
-          <div class="navbar-collapse collapse" id=".navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="#!">Our Doctors</a></li>
-              <li><a href="#!">How It Works</a></li>
-              <li><a href="#!">Book a session</a></li>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="features.html">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login.html">Account</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="help.html">Help <span class="sr-only">(current)</span></a>
+              </li>
             </ul>
-            <button type="button" class="btn btn-outline-dark">Sign in</button>
-        </div>
+          </div>
+        </nav>
       </div>
-    </div>
 
     <div id="headerwrap">
       <div class="container">
         <div class="card-deck">
           <div class="card-p" style="background-color: #FFFFEA">
-            <div class="card-body">
+            <div class="card-body" style="margin: 23px;">
               <div class="card-title">Virtual Healthcare <br>
                 When You <br>
                 Need It Most</div>
@@ -136,54 +117,40 @@
               <p class="card-text">Our clinic will help you quickly and easily find the doctor you need and make an appointment at any clinic in your city.<br> ....</p>
             </div>
           </div>
-<!--
-          <div class="container" style="border:1px solid black;">
-            <div class="row">
-              <div class="col-sm-2 col-md-5 container-fluid" style="padding: 20px;" >
-                <img src="icons/doc.png" alt="">
-              </div>
-              <div class="col-auto container-fluid" style="border:1px solid black; width:100%; height: 100%;">
+        </div>
+      </div>
+    </div>
 
+    <div id="Slider">
+      <div class="PatientsReviews">
+        <div id="carousel" class="carousel slide-fade" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active" style="border: 1px solid black;">
+              <img src="icons/slider.png" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block" style="color: black;">
+                <p>Kamila, 27</p>
+              </div>
+            </div>
+            <div class="carousel-item" style="border: 1px solid black;">
+              <img src="icons/slider.png" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block" style="color: black;">
+                <p>Arman, 33</p>
+              </div>
+            </div>
+            <div class="carousel-item" style="border: 1px solid black;">
+              <img src="icons/slider.png" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block" style="color: black;">
+                <p>Altynai, 30</p>
               </div>
             </div>
           </div>
-
--->
-            <div class="PatientsReviews">
-              <div id="carouselFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                  <div class="carousel-inner" style="padding-left: 10%; padding-right: 10%;">
-                    <div class="carousel-item active">
-                      <div style="border: 1px solid black; color:#FFFFEA; width:100%; height:80%;" class="d-block w-100" alt="..." >
-                      <div class="carousel-caption" style="background-color: #86D3E9; color:black; width:100%; height:20%; ">
-                        <div id = "PatientsNameInComment" >Altynai, 32</div>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div style="border: 1px solid black; color:#FFFFEA; width:100%; height:80%;" class="d-block w-100" alt="..." >
-                      <div class="carousel-caption" style="background-color: #86D3E9; color:black; width:100%; height:20%; ">
-                        <div id = "PatientsNameInComment" >Altynai, 32</div>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div style="border: 1px solid black; color:#FFFFEA; width:100%; height:80%;" class="d-block w-100" alt="...">
-                      <div class="carousel-caption" style="background-color: #86D3E9; color:black; width:100%; height:20%; ">
-                        <div id = "PatientsNameInComment" >Altynai, 32</div>
-                      </div>
-                    </div>
-                  </div>
-                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselFade"  data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Предыдущий</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#carouselFade"  data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Следующий</span>
-                  </button>
-                </div>
-              </div>
-                  </div>
-              </div>
-            </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carousel"  data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Предыдущий</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carousel"  data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Следующий</span>
         </div>
       </div>
     </div>
@@ -191,42 +158,42 @@
     <footer class="page-footer font-small blue pt-4" style="background-color:#86D3E9;">
       <div class="container-fluid text-center text-md-left">
         <div class="row">
-          <div class="col-md-6 mt-md-0 mt-3">
+          <div class="col-md-6 mt-md-0 mt-3" style="padding: 20px; padding-left: 50px;">
             <h4 class="text-uppercase">More information</h4>
             <p>The densaulyk website was invented as an excellent tool for registering patients to various doctors and polyclinics. I don't want to write a lot of words, so let's imagine that here I wrote a real interesting and informative text. Thank you very much for visiting our website)</p>
           </div>
           <hr class="clearfix w-100 d-md-none pb-3">
-          <div class="col-md-3 mb-md-0 mb-3">
+          <div class="col-md-3 mb-md-0 mb-3" style="padding: 20px;">
             <h5 class="text-uppercase">Helpful links</h5>
             <ul class="list-unstyled">
               <li>
-                <a href="https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/behaviours/help-for-suicidal-thoughts/">For Students</a>
+                <a href="https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/behaviours/help-for-suicidal-thoughts/" style="color: black;">For Students</a>
               </li>
               <li>
-                <a href="https://klinikarassvet.ru/company/smi-o-nas/problema-s-utrenney-erektsiey-chto-delat-i-nado-li-lechit/">For Nikita</a>
+                <a href="https://klinikarassvet.ru/company/smi-o-nas/problema-s-utrenney-erektsiey-chto-delat-i-nado-li-lechit/" style="color: black;">For Nikita</a>
               </li>
               <li>
-                <a href="https://youtu.be/dQw4w9WgXcQ">For humanity</a>
+                <a href="https://youtu.be/dQw4w9WgXcQ" style="color: black;">For humanity</a>
               </li>
               <li>
-                <a href="https://youtu.be/JiYq_R55WdM">For dehydration</a>
+                <a href="https://youtu.be/JiYq_R55WdM" style="color: black;">For dehydration</a>
               </li>
             </ul>
           </div>
-          <div class="col-md-3 mb-md-0 mb-3">
+          <div class="col-md-3 mb-md-0 mb-3" style="padding: 20px;">
             <h5 class="text-uppercase">Our contacts</h5>
             <ul class="list-unstyled">
               <li>
-                <a href="https://t.me/operator_hike">Man1</a>
+                <a href="https://t.me/operator_hike" style="color: black;" >Man1</a>
               </li>
               <li>
-                <a href="https://t.me/tunaxxnew">Man2</a>
+                <a href="https://t.me/tunaxxnew" style="color: black;">Man2</a>
               </li>
               <li>
-                <a href="https://t.me/Ecl1ps0">Man3</a>
+                <a href="https://t.me/Ecl1ps0" style="color: black;">Man3</a>
               </li>
               <li>
-                <a href="https://t.me/aloneforalong">Woman?</a>
+                <a href="https://t.me/aloneforalong" style="color: #860C0C;">The best girl ;)</a>
               </li>
             </ul>
           </div>
@@ -234,9 +201,5 @@
       </div>
     </footer>
 
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="bootstrap/bootstrap.min.js"></script>
   </body>
 </html>
