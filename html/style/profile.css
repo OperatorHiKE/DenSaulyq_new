@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+body {
+    background-color: #000
+}
+
+table {
+    margin: 64px;
+    background-color: #ffffff;
+    border-radius: 32px;
+    box-shadow: 0 3px 8px #000000;
+}
+td {
+    padding: 16px!important;
+}
+tr {
+    height: 96px!important;
+}
+button {
+    width: 64px!important;
+    height: 64px!important;
+}
+.btn-outline-secondary, .btn-outline-secondary:focus, .btn-outline-secondary:hover {
+    background-color: white!important;
+    border: none!important;
+    color: black!important;
+    box-shadow: 0 2px 1px #000000!important;
+    border-radius: 8px!important;
+}
+.btn-outline-secondary:focus {
+    box-shadow: 0 5px 100px #ffffff!important;
+}
+input {
+    box-shadow: none!important;
+    border: none!important;
+}
+i {
+    font-size: 32px;
+}
+
+.card {
+    width: 100%;
+    background-color: #efefef;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s
+}
+
+.image img {
+    transition: all 0.5s
+}
+
+.card:hover .image img {
+    transform: scale(1.5)
+}
+
+.btn {
+    height: 140px;
+    width: 140px;
+    border-radius: 50%
+}
+
+.name {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.idd {
+    font-size: 14px;
+    font-weight: 600
+}
+
+.idd1 {
+    font-size: 12px
+}
+
+.number {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.follow {
+    font-size: 12px;
+    font-weight: 500;
+    color: #444444
+}
+
+.vipCard {
+    background: rgb(251,241,63)!important;
+    background: radial-gradient(circle, rgba(251,241,63,1) 54%, rgba(252,70,186,1) 100%)!important;
+}
+
+.vipCard i {
+    color: black;
+}
+
+.btn1 {
+    height: 40px;
+    width: 150px;
+    border: none;
+    background-color: #000;
+    color: #aeaeae;
+    font-size: 15px
+}
+
+.text span {
+    font-size: 13px;
+    color: #545454;
+    font-weight: 500
+}
+
+.icons i {
+    font-size: 19px
+}
+
+hr .new1 {
+    border: 1px solid
+}
+
+.join {
+    font-size: 14px;
+    color: #a0a0a0;
+    font-weight: bold
+}
+
+.date {
+    background-color: #ccc
+}
