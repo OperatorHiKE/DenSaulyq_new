@@ -51,7 +51,17 @@ var userSchema = new mongoose.Schema
 	requestIds:
 	{
 		type: Array
-	}
+	},
+
+	doctor:
+		{
+			type: Boolean
+		},
+
+	clients:
+		{
+			type: Array
+		}
 })
 
 mongoose.model("User", userSchema)

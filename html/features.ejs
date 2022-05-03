@@ -12,32 +12,7 @@
 
 </head>
 <body>
-  <!-- Nav Bar -->
-  <div class="navbar navbar-inverse navbar-fixed-top" style="justify-content: space-around">
-    <a class="navbar-brand" href="index.html">DenSaulyq</a>
-        <img class ="title-icon" width="50" height="50" src="icons/icon1.png">
-      <nav class="navbar navbar-expand-lg navbar-light bg-#FFFFEA">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="features.html">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login.html">Account</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="help.html">Help <span class="sr-only">(current)</span></a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
+<%- include('header.html') %>
 
 <div class="container">
   <div class="row no-gutters">
@@ -80,11 +55,11 @@
 </div>
 
 <footer>
-	<p>
-	<form action="index.html" class="back-to-home-container">
-		<button style="border-radius: 50px;"> Back to Home </button>
-	</form>
-	</p>
+  <p>
+  <form action="/" class="back-to-home-container">
+    <button style="border-radius: 50px;"> Back to Home </button>
+  </form>
+  </p>
 </footer>
 
 </body>

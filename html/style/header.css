@@ -1,0 +1,69 @@
+/* Другие стили*/
+.navbar{
+    width: 100%;
+    height: 100px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.1);
+    background-color: #FFFFEA;
+}
+
+.navbar .container{
+    height: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-menu{
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+
+}
+.navbar-menu li{
+    display: inline-block;
+
+}
+.navbar-menu li a{
+    display: inline-block;
+    color: #000;
+    opacity: 0.6;
+    text-decoration: none;
+    padding: 10px;
+    /*Тут можно скорость изменения на черной поменять */
+    transition: all 0.5s ease-in-out;
+}
+.navbar-menu li a:hover{
+    opacity: 1;
+}
+.callback{
+    backdrop-color: white;
+    color: #000;
+    text-decoration: none;
+    transition: all 0.1s ease-out;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px;
+    opacity: 1!important;
+    margin-left: 64px;
+}
+.callback:hover{
+    transform:scale(1.05);
+    color: #000;
+}
+.navbar-brand{
+    font-weight: 700;
+    font-sixe:26px;
+    text-decoration: none;
+    color: #000;
+    justify-content: space-between;
+    transition: all 0.5s ease-in-out;
+}
+.navbar-brand:hover{
+    opacity: 1;
+}
+.title-icon{
+    width:50px;
+    height:50px;
+    padding-left: 50px;
+}

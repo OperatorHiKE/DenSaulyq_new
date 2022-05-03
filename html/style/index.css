@@ -173,3 +173,35 @@ hr{
 .weewee{
   size: large;
 }
+
+.btn-primary {
+  background-color: white!important;
+  border-radius: 32px!important;
+  transition: all 0.5s ease-in-out;
+  z-index: 1000!important;
+  width: 200px!important;
+  height: 200px!important;
+  display: flex!important;
+  justify-content: center!important;
+  align-items: center!important;
+}
+.btn-primary, .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+  border: none!important;
+  box-shadow: 0 0 10px #000000!important;
+  outline: none!important;
+}
+.btn-primary:focus {
+  background-color: gray!important;
+}
+.btnFixed {
+  position: fixed!important;
+  top:0!important;
+}
+.hcentered {
+  position: absolute;
+  top:100px;
+  left:50%;
+  -moz-transform:    translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform:         translateX(-50%);
+}

@@ -4,13 +4,13 @@
 }
 
 body {
-    background-color: #000
+    background-color: #FCFCE9!important;
 }
 
 table {
     margin: 64px;
-    background-color: #ffffff;
-    border-radius: 32px;
+    background-color: #FFFFEA;
+    border-radius: 8px;
     box-shadow: 0 3px 8px #000000;
 }
 td {
@@ -28,13 +28,13 @@ button {
     border: none!important;
     color: black!important;
     box-shadow: 0 2px 1px #000000!important;
-    border-radius: 8px!important;
 }
 .btn-outline-secondary:focus {
     box-shadow: 0 5px 100px #ffffff!important;
 }
 input {
-    box-shadow: none!important;
+    background-color: #FFFFEA!important;
+    box-shadow: 0 2px 1px #000000!important;
     border: none!important;
 }
 i {
@@ -46,7 +46,8 @@ i {
     background-color: #efefef;
     border: none;
     cursor: pointer;
-    transition: all 0.5s
+    transition: all 0.5s;
+    box-shadow: 0 0 20px gray;
 }
 
 .image img {
@@ -60,7 +61,9 @@ i {
 .btn {
     height: 140px;
     width: 140px;
-    border-radius: 50%
+    border-radius: 0!important;
+    box-shadow: 0 2px 1px #000000!important;
+    background-color: #FFFFEA!important;
 }
 
 .name {
@@ -90,7 +93,7 @@ i {
 
 .vipCard {
     background: rgb(251,241,63)!important;
-    background: radial-gradient(circle, rgba(251,241,63,1) 54%, rgba(252,70,186,1) 100%)!important;
+    background: radial-gradient(circle, rgba(256,256,256,1) 90%, rgba(256,220,63,1) 100%)!important;
 }
 
 .vipCard i {

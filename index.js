@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const cookie     = require('cookie-parser')
 const ejs        = require('ejs')
 const mongodb    = require('./mongodb.js')
+const chat       = require('./chat.js')
+const {getUser} = require("./mongodb");
 
 global.TextEncoder = require("util").TextEncoder
 global.TextDecoder = require("util").TextDecoder
@@ -40,6 +42,83 @@ app.get('/', (req, res) =>
 		})
 	})
 })
+app.get('/help', (req, res) =>
+{
+	res.render(path.join(__dirname, 'html', 'help'), {})
+})
+app.get('/chat', (req, res) =>
+{
+	mongodb.getDoctors((result) => {
+		let uname = req.cookies.login
+		if (uname === undefined || uname == '-1') {
+			res.sendFile(path.join(__dirname, 'html', 'login.html'))
+		} else {
+			var data = []
+			var isDoctor = false
+			for (var i = 0; i < result.length; i++) {
+				if (result[i].uname == uname)
+					isDoctor = true
+				if (result[i].clients.includes(uname))
+					data.push(chat.getChat(uname, result[i].uname))
+				else
+					data.push('-1')
+			}
+
+			if (isDoctor) {
+				mongodb.getUser(uname, req.cookies.password, (doctor) => {
+					var data = []
+					for (var i = 0; i < doctor[0].clients.length; i++) {
+						data.push(chat.getChat(doctor[0].clients[i], doctor[0].uname))
+					}
+					res.render(path.join(__dirname, 'html', 'chat'),
+						{
+							uname: uname,
+							texts: data,
+							users: doctor[0].clients,
+							isDoc: isDoctor,
+							doctor: doctor[0]
+						})
+				})
+			} else {
+				res.render(path.join(__dirname, 'html', 'chat'),
+					{
+						uname: uname,
+						texts: data,
+						doctors: result,
+						isDoc: isDoctor
+					})
+			}
+		}
+	})
+})
+app.post('/message', (req, res) =>
+{
+	var text = req.body.src
+	var response = req.body.response
+	var uname = req.body.uname
+	var isFirst = req.body.isFirst
+	var isDoc = req.body.isDoc
+	isDoc = parseInt(isDoc)
+	if (!isDoc) {
+		mongodb.newClient(uname, response, isFirst, () => {
+			if (isFirst)
+				chat.getChat(uname, response)
+			chat.sendMessage(uname, response, text, isDoc)
+			res.redirect('/chat')
+		})
+	} else {
+		chat.sendMessage(response, uname, text, isDoc)
+		res.redirect('/chat')
+	}
+})
+app.get('/abilities', (req, res) =>
+{
+	res.render(path.join(__dirname, 'html', 'abilities'), {})
+})
+app.get('/features', (req, res) =>
+{
+	res.render(path.join(__dirname, 'html', 'features'), {})
+})
 app.get('/index.css', (req, res) =>
 {
   res.sendFile(path.join(__dirname, 'html', 'style', 'index.css'))
@@ -52,9 +131,25 @@ app.get('/help.css', (req, res) =>
 {
 	res.sendFile(path.join(__dirname, 'html', 'style', 'help.css'))
 })
+app.get('/chat.css', (req, res) =>
+{
+	res.sendFile(path.join(__dirname, 'html', 'style', 'chat.css'))
+})
 app.get('/profile.css', (req, res) =>
 {
 	res.sendFile(path.join(__dirname, 'html', 'style', 'profile.css'))
+})
+app.get('/features.css', (req, res) =>
+{
+	res.sendFile(path.join(__dirname, 'html', 'style', 'features.css'))
+})
+app.get('/header.css', (req, res) =>
+{
+	res.sendFile(path.join(__dirname, 'html', 'style', 'header.css'))
+})
+app.get('/help.js', (req, res) =>
+{
+	res.sendFile(path.join(__dirname, 'html', 'script', 'help.js'))
 })
 app.get('/login', (req, res) =>
 {
@@ -71,6 +166,12 @@ app.get('/login', (req, res) =>
 				})
 		})
 	}
+})
+app.get('/quit', (req, res) =>
+{
+	res.cookie('login', '-1')
+	res.cookie('password', '-1')
+	res.redirect('/login')
 })
 app.get('/login.js', (req, res) =>
 {

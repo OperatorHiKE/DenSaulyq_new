@@ -1,0 +1,5 @@
+.chatCard {
+    position: absolute;
+    visibility: hidden;
+    background-color: #eeeeee;
+}

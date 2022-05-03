@@ -199,6 +199,32 @@ var addRequest = function(date, placeId, loginOrEmail, password, callback)
 	})
 }
 
+var getDoctors = function(callback)
+{
+	User.find({ doctor: true }, (err, result) =>
+	{
+		return callback(JSON.parse(JSON.stringify(result)))
+	})
+}
+
+var newClient = function(uname, doctor, isFirst, callback)
+{
+	console.log(isFirst)
+	if (isFirst == 'true') {
+		console.log(1)
+		User.updateOne({uname: doctor},
+			{
+				$push: {
+					clients: uname
+				}
+			}, (err, result) => {
+				return callback()
+			})
+	} else {
+		return callback()
+	}
+}
+
 module.exports =
 {
 	newUser: newUser,
@@ -211,5 +237,7 @@ module.exports =
 	changeIIN: changeIIN,
 	changeEmail: changeEmail,
 	changePhone: changePhone,
-	addRequest: addRequest
+	addRequest: addRequest,
+	getDoctors: getDoctors,
+	newClient: newClient
 }
