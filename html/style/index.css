@@ -205,3 +205,8 @@ hr{
   -webkit-transform: translateX(-50%);
   transform:         translateX(-50%);
 }
+.text-profile {
+  width: 120px;
+  float: right;
+  display: inline;
+}
