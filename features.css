@@ -1,0 +1,128 @@
+@font-face {
+  font-family: 'Avenir';
+  src: url('avenir_ff/AvenirLTStd-Book.otf');
+}
+
+body{
+  background-color: #FFFFEA !important;
+  font-family: 'Open Sans';
+  font-weight: 300;
+  font-size: 20px;
+  color: #000000;
+
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+
+  margin-top: 80px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Rozha One';
+  font-weight: 250;
+  color: #000000;
+}
+
+p {
+  line-height: 28px;
+  margin-bottom: 25px;
+}
+
+a{
+  color: #000000;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 10px 0;
+}
+
+a:hover, a:focus{
+  color: #ccc;
+  outline: 0;
+}
+
+hr{
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.navbar-inverse{
+  background: #FFFFEA;
+  border-color: #FFFFEA;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.navbar-inverse .navbar-nav > .active > a {
+  background-color: #FFFFEA;
+}
+
+.nav-link {
+  background: #FFFFEA;
+  background-color: #FFFFEA;
+}
+
+.navbar-inverse .navbar-brand{
+  color: #000000;
+  font-weight: bolder;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+#navbarText{
+  margin: 10px;
+}
+
+/* ==================================================================== */
+.container{
+  border: 1px solid black;
+  border-radius: 20px;
+  margin: 5% auto 10% auto;
+
+}
+
+.row{
+  max-height: 500px;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+button {
+	border: 1px solid #8C52FF;
+	background-color: #8C52FF;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+
+
+footer {
+	background-color: #FFFFEA;
+	color: #fff;
+	font-size: 14px;
+	bottom: 0;
+	position: fixed;
+	left: 0;
+	right: 0;
+	text-align: center;
+	z-index: 999;
+}
+
+footer p {
+	margin: 10px 0;
+}
+
+footer i {
+	color: red;
+}
+
+footer a {
+	color: #3c97bf;
+	text-decoration: none;
+}
