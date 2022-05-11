@@ -119,6 +119,9 @@ app.get('/features', (req, res) =>
 {
 	res.render(path.join(__dirname, 'html', 'features'), {})
 })
+app.get('/session', (req, res) =>{
+	res.render(path.join(__dirname, 'html', 'session'), {})
+})
 app.get('/index.css', (req, res) =>
 {
   res.sendFile(path.join(__dirname, 'html', 'style', 'index.css'))
@@ -135,6 +138,9 @@ app.get('/chat.css', (req, res) =>
 {
 	res.sendFile(path.join(__dirname, 'html', 'style', 'chat.css'))
 })
+app.get('/index', (req, res) => {
+	res.render(path.join(__dirname, 'html', 'index'))
+})
 app.get('/profile.css', (req, res) =>
 {
 	res.sendFile(path.join(__dirname, 'html', 'style', 'profile.css'))
@@ -150,6 +156,10 @@ app.get('/header.css', (req, res) =>
 app.get('/help.js', (req, res) =>
 {
 	res.sendFile(path.join(__dirname, 'html', 'script', 'help.js'))
+})
+app.get('/session.css', (req, res) =>
+{
+	res.sendFile(path.join(__dirname, 'html', 'style', 'session.css'))
 })
 app.get('/login', (req, res) =>
 {
