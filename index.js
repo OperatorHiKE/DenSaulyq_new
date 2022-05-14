@@ -120,7 +120,13 @@ app.get('/features', (req, res) =>
 	res.render(path.join(__dirname, 'html', 'features'), {})
 })
 app.get('/session', (req, res) =>{
-	res.render(path.join(__dirname, 'html', 'session'), {})
+	let docType = req.query.doc
+	console.log(docType)
+
+	if(docType == undefined) {
+		docType = 0
+	}
+	res.render(path.join(__dirname, 'html', 'session'), {docType: docType})
 })
 app.get('/index.css', (req, res) =>
 {
@@ -194,6 +200,9 @@ app.get('/map.js', (req, res) =>
 app.get('/mongodb', (req, res) =>
 {
 	res.sendFile(path.join(__dirname, 'mongodb.js'))
+})
+app.get('/appointment', (req, res) => {
+	res.sendFile(path.join(__dirname, 'html', 'appointment_page.html'))
 })
 
 
@@ -284,6 +293,26 @@ app.post('/changeUser', (req, res) =>
 				res.redirect('/login')
 			else
 				res.send("1")
+		})
+	}
+})
+
+app.post('/session', (req,res) => {
+	let uname = req.cookies.login
+	console.log(uname)
+	if (uname === undefined || uname == '-1') {
+		res.sendFile(path.join(__dirname, 'html', 'login.html'))
+	} else {
+		let department = req.body.department
+		let doctor = req.body.doctor
+		let date = req.body.date
+		let time = req.body.time
+		let name = req.body.name
+		let phone = req.body.phone
+		let message = req.body.message
+
+		mongodb.makeAppointment(department, doctor, date, time, name, phone, message, (result) => {
+			res.redirect('/appointment')
 		})
 	}
 })

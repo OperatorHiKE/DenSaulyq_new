@@ -63,13 +63,29 @@
         <div class="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
           <h2 class="mb-2 title-color">Book an appoinment</h2>
           <p class="mb-4">Mollitia dicta commodi est recusandae iste, natus eum asperiores corrupti qui velit . Iste dolorum atque similique praesentium soluta.</p>
-          <form id="#" class="appoinment-form" method="post" action="#">
+          <form id="#" class="appoinment-form" method="post" action="/session">
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
-                  <select class="form-control" id="exampleFormControlSelect1">
-                    <option>Choose Department</option>
-                    <option>Cardiology</option>
+                  <select class="form-control" id="exampleFormControlSelect1" name="department">
+                    <%if(docType == 0) {%>
+                      <option>Choose Department</option>
+                    <%}%>
+                    <%if(docType == 1){%>
+                      <option selected="selected">Cardiology</option>
+                    <%} else {%>
+                      <option>Cardiology</option>
+                    <%}%>
+                      <%if(docType == 2){%>
+                        <option selected="selected">Proctology</option>
+                      <%} else {%>
+                        <option>Proctology</option>
+                      <%}%>
+                      <%if(docType == 3){%>
+                        <option selected="selected">Pulmonology</option>
+                      <%} else {%>
+                        <option>Pulmonology</option>
+                      <%}%>
                     <option>Gastroenterology</option>
                     <option>Gynecology</option>
                     <option>Intensive Care Unit (ICU)</option>
@@ -78,8 +94,25 @@
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
-                  <select class="form-control" id="exampleFormControlSelect2">
-                    <option>Select Doctors</option>
+                  <select class="form-control" id="exampleFormControlSelect2" name="doctor">
+                    <%if(docType == 0){%>
+                    <option selected="selected">Select Doctors</option>
+                    <%}%>
+                      <%if(docType == 1){%>
+                        <option selected="selected">Cardiologist</option>
+                      <%} else {%>
+                        <option>Cardiologist</option>
+                      <%}%>
+                      <%if(docType == 2){%>
+                        <option selected="selected">Proctologist</option>
+                      <%} else {%>
+                        <option>Proctologist</option>
+                      <%}%>
+                      <%if(docType == 3){%>
+                        <option selected="selected">Pulmonologist</option>
+                      <%} else {%>
+                        <option>Pulmonologist</option>
+                      <%}%>
                     <option>Emergency physicians</option>
                     <option>Psychiatrists</option>
                     <option>Neurologists</option>
@@ -92,24 +125,24 @@
 
               <div class="col-lg-6">
                 <div class="form-group">
-                  <input name="date" id="date" type="text" class="form-control" placeholder="dd/mm/yyyy">
+                  <input name="date" id="date" type="date" class="form-control" placeholder="dd/mm/yyyy" required>
                 </div>
               </div>
 
               <div class="col-lg-6">
                 <div class="form-group">
-                  <input name="time" id="time" type="text" class="form-control" placeholder="Time">
+                  <input name="time" id="time" type="text" class="form-control" placeholder="Time" required>
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
-                  <input name="name" id="name" type="text" class="form-control" placeholder="Full Name">
+                  <input name="name" id="name" type="text" class="form-control" placeholder="Full Name" required>
                 </div>
               </div>
 
               <div class="col-lg-6">
                 <div class="form-group">
-                  <input name="phone" id="phone" type="Number" class="form-control" placeholder="Phone Number">
+                  <input name="phone" id="phone" type="text" class="form-control" placeholder="Phone Number" required>
                 </div>
               </div>
             </div>
@@ -117,7 +150,7 @@
               <textarea name="message" id="message" class="form-control" rows="6" placeholder="Your Message"></textarea>
             </div>
 
-            <a class="btn btn-main btn-round-full" href="confirmation.html">Make Appoinment<i class="icofont-simple-right ml-2"></i></a>
+            <button type="submit" class="btn btn-main btn-round-full">Make Appointment<i class="icofont-simple-right ml-2"></i></button>
           </form>
         </div>
       </div>

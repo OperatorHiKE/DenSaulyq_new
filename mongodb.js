@@ -13,10 +13,12 @@ err => {
 require('./User.model')
 require('./Place.model')
 require('./Request.model')
+require('./Appointment.model')
 
 const User = mongoose.model('User')
 const Place = mongoose.model('Place')
 const Request = mongoose.model('Request')
+const Appointment = mongoose.model('Appointment')
 
 var newUser = function(uname, email, password, name, surname, IIN, phone)
 {
@@ -225,6 +227,21 @@ var newClient = function(uname, doctor, isFirst, callback)
 	}
 }
 
+var makeAppointment = function(department, doctor, date, time, name, phone, message, callback)
+{
+	Appointment.create
+	({
+		department,
+		doctor,
+		date,
+		time,
+		name,
+		phone,
+		message
+	}).then()
+	return callback();
+}
+
 module.exports =
 {
 	newUser: newUser,
@@ -239,5 +256,6 @@ module.exports =
 	changePhone: changePhone,
 	addRequest: addRequest,
 	getDoctors: getDoctors,
-	newClient: newClient
+	newClient: newClient,
+	makeAppointment: makeAppointment
 }
