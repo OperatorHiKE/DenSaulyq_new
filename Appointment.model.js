@@ -12,7 +12,7 @@ var appointmentSchema = new mongoose.Schema
         },
     date:
         {
-            type: Date
+            type: String
         },
     time:
         {

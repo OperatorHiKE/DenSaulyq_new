@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Avenir';
-    src: url('avenir_ff/AvenirLTStd-Book.otf');
+    src: url('../fonts/AvenirLTStd-Book.otf');
 }
 
 body{

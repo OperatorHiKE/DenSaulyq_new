@@ -104,6 +104,9 @@ var getPlaces = function(callback)
 		return callback(JSON.parse(JSON.stringify(result)))
 	})
 }
+
+
+
 var getUser = function(loginOrEmail, password, callback)
 {
 	User.find({ $or: [{uname: loginOrEmail}, {email: loginOrEmail}], password: password}, (err, result) =>
@@ -111,6 +114,13 @@ var getUser = function(loginOrEmail, password, callback)
 		return callback(JSON.parse(JSON.stringify(result)))
 	})
 }
+var getUserAsync = async function (loginOrEmail, password) {
+	const callback = await User.find({$or: [{uname: loginOrEmail}, {email: loginOrEmail}], password: password}).lean()
+	return callback
+}
+
+
+
 var changeIIN = function(iin, loginOrEmail, password, callback)
 {
 	userExist(loginOrEmail, loginOrEmail, (exist) =>
@@ -242,6 +252,72 @@ var makeAppointment = function(department, doctor, date, time, name, phone, mess
 	return callback();
 }
 
+var getAppointments = async function(sortBy)
+{
+	var callback = 0
+	switch (sortBy) {
+		case 'department':
+			callback = Appointment.find({}).sort({department: 1}).lean()
+			break;
+
+		case 'doctor':
+			callback = Appointment.find({}).sort({doctor: 1}).lean()
+			break;
+
+		case 'date':
+			callback = Appointment.find({}).sort({date: 1}).lean()
+			break;
+
+		case 'time':
+			callback = Appointment.find({}).sort({time: 1}).lean()
+			break;
+
+		case 'name':
+			callback = Appointment.find({}).sort({name: 1}).lean()
+			break;
+
+		case 'phone':
+			callback = Appointment.find({}).sort({phone: 1}).lean()
+			break;
+
+		case 'message':
+			callback = Appointment.find({}).sort({message: 1}).lean()
+			break;
+	}
+	if (callback == 0)
+		callback = Appointment.find({}).lean()
+	return callback
+}
+
+var changeAppointment = function(department, doctor, date, time, name, phone, message, id)
+{
+	Appointment.updateOne({ _id: id }, {
+		$set: {
+			"department": department,
+			"doctor": doctor,
+			"date": date,
+			"time": time,
+			"name": name,
+			"phone": phone,
+			"message": message,
+		}
+	}).then()
+}
+
+var deleteAppointment = function(id)
+{
+	Appointment.deleteOne({ _id: id }).then()
+}
+
+var deleteClientChat = function(loginOrEmail, client)
+{
+	User.updateOne({$or: [{uname: loginOrEmail}, {email: loginOrEmail}]}, {
+		$pull: {
+			"clients": client
+		}
+	}).then()
+}
+
 module.exports =
 {
 	newUser: newUser,
@@ -251,11 +327,16 @@ module.exports =
 	loginUser: loginUser,
 	getPlaces: getPlaces,
 	getUser: getUser,
+	getUserAsync: getUserAsync,
 	changeIIN: changeIIN,
 	changeEmail: changeEmail,
 	changePhone: changePhone,
 	addRequest: addRequest,
 	getDoctors: getDoctors,
 	newClient: newClient,
-	makeAppointment: makeAppointment
+	makeAppointment: makeAppointment,
+	changeAppointment: changeAppointment,
+	deleteAppointment: deleteAppointment,
+	getAppointments: getAppointments,
+	deleteClientChat: deleteClientChat
 }

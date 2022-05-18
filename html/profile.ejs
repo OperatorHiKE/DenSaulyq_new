@@ -12,7 +12,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<%- include('header.html') %>
+<%- include('new_header.html') %>
 <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
     <% if (user.vip) { %>
     <div class="card p-4 vipCard">
@@ -70,6 +70,13 @@
                             <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-check"></i></button>
                         </div>
                     </div>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form action="/quit" method="get">
+                        <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-right-from-bracket"></i></button>
                     </form>
                 </td>
             </tr>

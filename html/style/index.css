@@ -226,7 +226,7 @@ hr{
   top:0!important;
 }
 .hcentered {
-  position: relative;
+  position: absolute;
   top:100px;
   left:45%;
 }

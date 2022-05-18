@@ -37,8 +37,15 @@ function sendMessage(uname, doctor, src, isDoc)
     });
 }
 
+function deleteChat(uname, client)
+{
+    let fileOpen = __dirname + '\\chat\\' + uname + client + '.txt'
+    fs.unlinkSync(fileOpen)
+}
+
 module.exports =
     {
         getChat: getChat,
-        sendMessage: sendMessage
+        sendMessage: sendMessage,
+        deleteChat: deleteChat
     }

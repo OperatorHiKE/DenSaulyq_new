@@ -91,6 +91,13 @@ app.get('/chat', (req, res) =>
 		}
 	})
 })
+app.post('/deleteChatUser', (req, res) => {
+	let uname = req.cookies.login
+	let client = req.body.client
+	mongodb.deleteClientChat(uname, client)
+	chat.deleteChat(uname, client)
+	res.redirect('/chat')
+})
 app.post('/message', (req, res) =>
 {
 	var text = req.body.src
@@ -204,6 +211,42 @@ app.get('/mongodb', (req, res) =>
 app.get('/appointment', (req, res) => {
 	res.sendFile(path.join(__dirname, 'html', 'appointment_page.html'))
 })
+app.get('/appointmentPanel', async (req, res) => {
+	let uname = req.cookies.login
+	if (uname === undefined || uname == '-1') {
+		res.redirect('login')
+	} else {
+		let isDoctor = await mongodb.getUserAsync(uname, req.cookies.password)
+		isDoctor = isDoctor[0].doctor
+		if (isDoctor === undefined || !isDoctor) {
+			res.redirect('/')
+		} else {
+			let sortBy = req.query.by
+			const appointments = await mongodb.getAppointments(sortBy)
+			res.render(path.join(__dirname, 'html', 'appointment_adminpanel'), {
+				appointments: appointments
+			})
+		}
+	}
+})
+
+app.post('/changeAppointment', (req, res) => {
+	mongodb.changeAppointment(
+		req.body.department,
+		req.body.doctor,
+		req.body.date,
+		req.body.time,
+		req.body.name,
+		req.body.phone,
+		req.body.message,
+		req.body.id
+	)
+	res.redirect('/appointmentPanel')
+})
+app.post('/deleteAppointment', (req, res) => {
+	mongodb.deleteAppointment(req.body.id)
+	res.redirect('/appointmentPanel')
+})
 
 
 
@@ -299,9 +342,8 @@ app.post('/changeUser', (req, res) =>
 
 app.post('/session', (req,res) => {
 	let uname = req.cookies.login
-	console.log(uname)
 	if (uname === undefined || uname == '-1') {
-		res.sendFile(path.join(__dirname, 'html', 'login.html'))
+		res.redirect('login')
 	} else {
 		let department = req.body.department
 		let doctor = req.body.doctor
@@ -310,9 +352,14 @@ app.post('/session', (req,res) => {
 		let name = req.body.name
 		let phone = req.body.phone
 		let message = req.body.message
+		let fromPanel = req.body.fromPanel
 
 		mongodb.makeAppointment(department, doctor, date, time, name, phone, message, (result) => {
-			res.redirect('/appointment')
+			if (fromPanel) {
+				res.redirect('/appointmentPanel')
+			} else {
+				res.redirect('/appointment')
+			}
 		})
 	}
 })

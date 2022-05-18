@@ -1,0 +1,15 @@
+.button_add {
+    margin-left: 3%;
+}
+
+a:link {
+    color: black;
+}
+a:hover, a:active, a:visited {
+    color: grey!important;
+}
+
+input {
+    border: none;
+    box-shadow: 0 0 2px #000;
+}
