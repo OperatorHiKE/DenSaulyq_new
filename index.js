@@ -32,13 +32,17 @@ app.get('/', (req, res) =>
 				Xs.push(result[i].x)
 				Ys.push(result[i].y)
 			}
-			res.render(path.join(__dirname, 'html', 'index'),
-				{
-					user: user[0],
-					adresses: adresses,
-					coordsX: Xs,
-					coordsY: Ys
-				})
+			mongodb.getComment(loginOrEmail, (comment) => {
+				console.log(comment)
+				res.render(path.join(__dirname, 'html', 'index'),
+					{
+						user: user[0],
+						adresses: adresses,
+						coordsX: Xs,
+						coordsY: Ys,
+						comment: comment
+					})
+			})
 		})
 	})
 })
@@ -361,6 +365,23 @@ app.post('/session', (req,res) => {
 				res.redirect('/appointment')
 			}
 		})
+	}
+})
+
+app.get('/newcomment', (req, res) => {
+	res.send('lety')
+})
+
+app.post('/newcomment', (req, res) =>{
+	let loginOrEmail = req.cookies.login
+	let password = req.cookies.password
+	if (loginOrEmail === undefined || loginOrEmail == '-1') {
+		res.sendFile(path.join(__dirname, 'html', 'login.html'))
+	}
+	else {
+		mongodb.createComment(loginOrEmail, req.body.comment, (result) => {
+		})
+		res.redirect('/')
 	}
 })
 

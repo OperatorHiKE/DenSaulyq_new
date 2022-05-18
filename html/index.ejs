@@ -188,7 +188,26 @@
 </div>
 
 <div id="Slider">
+
+  <div class="card border-dark mb-3 " style="max-width: 70%; margin: auto;">
+    <div class="card-body text-dark">
+      <form action="/newcomment" method="post">
+        <h5 >Create a new comment</h5>
+        <input type="text" name="comment" placeholder="Write a comment" class="form-control">
+        <button type="submit" class="btn btn-outline-secondary">Comment</button>
+      </form>
+    </div>
+  </div>
+
   <div class="PatientsReviews">
+    <%for(var i=0; i<comment.length; i++) {%>
+      <div class="card border-secondary mb-3" style="max-width: 50%;">
+        <div class="card-header"><%= comment[i].user%></div>
+        <div class="card-body text-secondary">
+          <p class="card-text"><%= comment[i].comment%></p>
+        </div>
+      </div>
+    <%}%>
     <div id="carousel" class="carousel slide-fade" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active" style="border: 1px solid black;">

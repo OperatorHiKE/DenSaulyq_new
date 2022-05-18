@@ -14,11 +14,13 @@ require('./User.model')
 require('./Place.model')
 require('./Request.model')
 require('./Appointment.model')
+require('./Comment.model')
 
 const User = mongoose.model('User')
 const Place = mongoose.model('Place')
 const Request = mongoose.model('Request')
 const Appointment = mongoose.model('Appointment')
+const Comment = mongoose.model('Comment')
 
 var newUser = function(uname, email, password, name, surname, IIN, phone)
 {
@@ -318,25 +320,43 @@ var deleteClientChat = function(loginOrEmail, client)
 	}).then()
 }
 
-module.exports =
+var createComment = function (user, comment, callback)
 {
-	newUser: newUser,
-	userExist: userExist,
-	iinExist: iinExist,
-	registerUser: registerUser,
-	loginUser: loginUser,
-	getPlaces: getPlaces,
-	getUser: getUser,
-	getUserAsync: getUserAsync,
-	changeIIN: changeIIN,
-	changeEmail: changeEmail,
-	changePhone: changePhone,
-	addRequest: addRequest,
-	getDoctors: getDoctors,
-	newClient: newClient,
-	makeAppointment: makeAppointment,
-	changeAppointment: changeAppointment,
-	deleteAppointment: deleteAppointment,
-	getAppointments: getAppointments,
-	deleteClientChat: deleteClientChat
+	Comment.create
+	({
+		user,
+		comment
+	}).then()
+	return callback;
 }
+
+var getComment = function(loginOrEmail, callback) {
+	Comment.find({user: loginOrEmail}, (err, result) => {
+		return callback(JSON.parse(JSON.stringify(result)))
+	})
+}
+
+module.exports =
+	{
+		newUser: newUser,
+		userExist: userExist,
+		iinExist: iinExist,
+		registerUser: registerUser,
+		loginUser: loginUser,
+		getPlaces: getPlaces,
+		getUser: getUser,
+		getUserAsync: getUserAsync,
+		changeIIN: changeIIN,
+		changeEmail: changeEmail,
+		changePhone: changePhone,
+		addRequest: addRequest,
+		getDoctors: getDoctors,
+		newClient: newClient,
+		makeAppointment: makeAppointment,
+		changeAppointment: changeAppointment,
+		deleteAppointment: deleteAppointment,
+		getAppointments: getAppointments,
+		deleteClientChat: deleteClientChat,
+		createComment: createComment,
+		getComment: getComment
+	}
