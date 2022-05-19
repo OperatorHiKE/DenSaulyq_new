@@ -12,8 +12,9 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<%- include('new_header.html') %>
-<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+<%-include('new_header.html') %>
+
+<div class="container mt-4 mb-4 p-3 d-flex justify-content-center" style="margin-top: 50%">
     <% if (user.vip) { %>
     <div class="card p-4 vipCard">
         <div class="d-flex flex-row justify-content-center align-items-center gap-2"><i class="fa-solid fa-crown"></i></div>
@@ -81,9 +82,11 @@
                 </td>
             </tr>
             </tbody>
-        </div>
-
         </table>
+    </div>
+    </div>
+</div>
+
         <!--<form action="/addRequest" method="post">
         <div class="input-group">
             <h1>test</h1>
@@ -94,9 +97,8 @@
             </div>
         </div>
         </form>-->
-    </div>
-</div>
-<%- include('profile_info.html') %>
+
+<%- //include('profile_info.html') %>
 
 <script src="https://kit.fontawesome.com/520e072e3a.js" crossorigin="anonymous"></script>
 </body>
