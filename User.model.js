@@ -55,7 +55,7 @@ var userSchema = new mongoose.Schema
 
 	doctor:
 		{
-			type: Boolean
+			type: Boolean, default: false
 		},
 
 	clients:
