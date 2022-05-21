@@ -320,11 +320,20 @@ app.post('/addRequest', (req, res) =>
 app.post('/changeUser', (req, res) =>
 {
 	let iin = req.body.iin
+	let name = req.body.name
 	let email = req.body.email
 	let phone = req.body.phone
 	if (iin) {
 		mongodb.changeIIN(iin, req.cookies.login, req.cookies.password, (result) => {
 			if (result == 0)
+				res.redirect('/login')
+			else
+				res.send("1")
+		})
+	}
+	if (name) {
+		mongodb.changeName(name, req.cookies.login, req.cookies.password, (result) => {
+			if (result != 0)
 				res.redirect('/login')
 			else
 				res.send("1")
