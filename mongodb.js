@@ -144,6 +144,28 @@ var changeIIN = function(iin, loginOrEmail, password, callback)
 		})
 	})
 }
+var changeName = function(name, loginOrEmail, password, callback)
+{
+	userExist(loginOrEmail, loginOrEmail, (exist) =>
+	{
+		if (exist != 0) {
+			User.find({"name": name}, (err, result) => {
+				if (JSON.stringify(result).length > 2)
+					return callback(0)
+				User.updateOne({$or: [{uname: loginOrEmail}, {email: loginOrEmail}], password: password}, {
+					$set: {
+						"name": name.toString()
+					}
+				}).then((obj) => {
+					console.log('Updated - ' + obj);
+				}).catch((err) => {
+					console.log('Error: ' + err);
+				})
+				return callback(exist)
+			})
+		}
+	})
+}
 var changeEmail = function(email, loginOrEmail, password, callback)
 {
 	userExist(loginOrEmail, loginOrEmail, (exist) =>
@@ -347,6 +369,7 @@ module.exports =
 		getUser: getUser,
 		getUserAsync: getUserAsync,
 		changeIIN: changeIIN,
+		changeName: changeName,
 		changeEmail: changeEmail,
 		changePhone: changePhone,
 		addRequest: addRequest,

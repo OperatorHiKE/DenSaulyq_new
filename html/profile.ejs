@@ -12,94 +12,126 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<%-include('new_header.html') %>
-
-<div class="container mt-4 mb-4 p-3 d-flex justify-content-center" style="margin-top: 50%">
-    <% if (user.vip) { %>
-    <div class="card p-4 vipCard">
-        <div class="d-flex flex-row justify-content-center align-items-center gap-2"><i class="fa-solid fa-crown"></i></div>
-    <% } else { %>
-    <div class="card p-4">
-    <% } %>
-        <div class="d-flex flex-row justify-content-center align-items-center gap-2"> <span class="idd1"><%=user.uname%></span></div>
-        <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span class="number"><%=user.name%>  <%=user.surname%></span></div>
-
-        <table>
-            <tbody>
-            <tr>
-                <td class="text-center"><i class="fa-solid fa-id-card"></i></td>
-                <td>
-                    <% if (user.IIN == "") { %>
-                        <span class="number">Fill your IIN!</span>
-                    <% } else { %>
-                        <span class="number"><%=user.IIN%></span>
-                    <% } %>
-                </td>
-                <td>
-                    <form action="/changeUser" method="post">
-                        <div class="input-group">
-                            <input type="number" class="form-control" name="iin" placeholder="Input your IIN" aria-label="Input your IIN" aria-describedby="basic-addon2" required>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-check"></i></button>
-                            </div>
-                        </div>
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-1 text-center"><i class="fa-solid fa-envelope"></i></td>
-                <td><span class="number"><%=user.email%></span></td>
-                <td>
-                    <form action="/changeUser" method="post">
-                        <div class="input-group">
-                            <input type="email" class="form-control" name="email" placeholder="New email address" aria-label="New email address" aria-describedby="basic-addon2" required>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-check"></i></button>
-                            </div>
-                        </div>
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-1 text-center"><i class="fa-solid fa-mobile-screen"></i></td>
-                <td><span class="number"><%=user.phone%></span></td>
-                <td>
-                    <form action="/changeUser" method="post">
-                    <div class="input-group">
-                        <input type="tel" class="form-control" name="phone" placeholder="New phone number" aria-label="New phone number" aria-describedby="basic-addon2" required>
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-check"></i></button>
-                        </div>
-                    </div>
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <form action="/quit" method="get">
-                        <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-right-from-bracket"></i></button>
-                    </form>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+<%- include('header.html') %>
+<div class="CentralLine">
+    <!--First line of Personal Paper and Settings-->
+    <div class="d-flex">
+        <div class="p-2 w-100"><h4>Personal Page</h4></div>
     </div>
-    </div>
-</div>
 
-        <!--<form action="/addRequest" method="post">
-        <div class="input-group">
-            <h1>test</h1>
-            <input type="text" class="form-control" name="date" placeholder="Date" aria-label="date" aria-describedby="basic-addon2" required>
-            <input type="number" class="form-control" name="placeId" placeholder="placeId" aria-label="placeId" aria-describedby="basic-addon2" required>
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-check"></i></button>
+    <!--My photo and Personal Data-->
+    <div class="d-flex">
+
+        <div class="p-2 flex-fill">
+            <ul class="nothing">
+                <li><img class="photo" src="icons/man.png"></li>
+                <li>Name: <%=user.name%> </li>
+                <li>IIN: <%=user.IIN%> </li>
+                <li>Phone: <%=user.phone%> </li>
+            </ul>
+        </div>
+
+        <div class="p-2 flex-fill text-center">
+            <div class="PersonalData">
+                <label>Personal Data</label>
+                <ul class="nothing">
+                    <li ><strong>Personal Doctor: </strong><p id="MyDoctorId"><!--Пока что тут будет текст-->Sam Onella</p>
+                    <li ><strong>Registred Hospital: </strong><p id="MyHodpitslId"><!--Пока что тут будет текст-->Hospital №4</p>
+                    <li ><strong>Blood Group: </strong><p id="MyBloodGroupId"><!--Пока что тут будет текст-->3 positive</p>
+                </ul>
             </div>
         </div>
-        </form>-->
 
-<%- //include('profile_info.html') %>
+    </div>
+    <!-- тут пишет заболевания -->
+    <div class="illnessBox">
+        <h4 class="tab4">Illnesses</h4>
+        <ul>
+            <li><!--Пока что тут будет текст-->Asthma <p>Asthma is a condition in which your airways narrow and swell and may produce extra mucus. This can make breathing difficult and trigger coughing, a whistling sound (wheezing) when you breathe out and shortness of breath.</p></li>
+            <li><!--Пока что тут будет текст-->Allergy <p>Allergy occurs when a person reacts to substances in the environment that are harmless to most people. </p></li>
+        </ul>
+    </div>
+</div>
+<div class="container mt-4 mb-4 p-3 d-flex justify-content-center" >
 
+    <!--    <% if (user.vip) { %>-->
+    <!--    <div class="card p-4 vipCard">-->
+    <!--        <div class="d-flex flex-row justify-content-center align-items-center gap-2"><i class="fa-solid fa-crown"></i></div>-->
+    <!--    <% } else { %>-->
+    <!--        <div class="card p-4 ">-->
+    <!--    <% } %>-->
+
+    <div class="card p-4 static">
+        <div id="ChangeData">
+            <table>
+                <tbody>
+                <tr>
+                    <td class="text-center"><i class="fa-solid fa-id-card"></i></td>
+                    <td>
+                        <% if (user.IIN == "") { %>
+                            <span class="number">Fill your IIN!</span>
+                        <% } else { %>
+                        <span class="number"><%=user.IIN%></span>
+                        <% } %>
+                    </td>
+                    <td>
+                        <form action="/changeUser" method="post">
+                            <div class="input-group">
+                                <input type="tel" class="form-control" name="iin" placeholder="Input your IIN" aria-label="Input your IIN" aria-describedby="basic-addon2" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-check"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-1 text-center"><i class="fa-solid fa-id-card"></i></td>
+                    <td><span class="number" ><%=user.name%></span></td>
+                    <td>
+                        <form action="/changeUser" method="post">
+                            <div class="input-group">
+                                <input type="tel" class="form-control" name="name" placeholder="Name" aria-label="Name" aria-describedby="basic-addon2" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-check"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-1 text-center"><i class="fa-solid fa-envelope"></i></td>
+                    <td><span class="number"><%=user.email%></span></td>
+                    <td>
+                        <form action="/changeUser" method="post">
+                            <div class="input-group">
+                                <input type="email" class="form-control" name="email" placeholder="New email address" aria-label="New email address" aria-describedby="basic-addon2" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-check"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-1 text-center"><i class="fa-solid fa-mobile-screen"></i></td>
+                    <td><span class="number"><%=user.phone%></span></td>
+                    <td>
+                        <form action="/changeUser" method="post">
+                            <div class="input-group">
+                                <input type="tel" class="form-control" name="phone" placeholder="New phone number" aria-label="New phone number" aria-describedby="basic-addon2" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-check"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 <script src="https://kit.fontawesome.com/520e072e3a.js" crossorigin="anonymous"></script>
 </body>
 </html>

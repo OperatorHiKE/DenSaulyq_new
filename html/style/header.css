@@ -1,7 +1,63 @@
-/* Другие стили*/
+body{
+    background-color: #FFFFEA !important;
+    position: relative;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #000;
+    min-width: 320px;
+    overflow-x: hidden;
+    height: auto;
+}
+
+.CentralLine{
+    border-color: black;
+    background-color: whitesmoke;
+    margin-top: 100px;
+    padding: 20px;
+    border-radius: 20px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 100px;
+}
+
+.photo{
+    width: 50px;
+    height: 50px;
+    margin: 20px;
+}
+.menuPhoto{
+    width: 20px;
+    height: 20px;
+}
+.PersonalData{
+    font-size: 20px;
+}
+
+.nothing {
+    font-size: 12px;
+    list-style-type: none;
+}
+.illnessBox{
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 10px;
+    min-width: 300px;
+    border: 2px solid gray;
+
+}
+.tab4{
+    tab-size: 4;
+}
+small{
+    text-align: center;
+}
+
 .navbar{
     width: 100%;
-    height: 100px;
+    height: 100px!important;
     box-shadow: 0 4px 10px rgba(0,0,0,.1);
     background-color: #FFFFEA;
 }
@@ -35,35 +91,41 @@
 .navbar-menu li a:hover{
     opacity: 1;
 }
+.navbar-wrap{
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+}
 .callback{
-    backdrop-color: white;
+    margin-left: 30px;
+    padding: 10px 30px;
+    backdrop-color: whitesmoke;
+    border-radius: 100px;
     color: #000;
     text-decoration: none;
     transition: all 0.1s ease-out;
-    font-size: 32px;
+    font-size: 20px;
     font-weight: bold;
-    text-align: center;
-    padding: 8px;
-    opacity: 1!important;
-    margin-left: 64px;
 }
 .callback:hover{
     transform:scale(1.05);
-    color: #000;
 }
 .navbar-brand{
     font-weight: 700;
     font-sixe:26px;
     text-decoration: none;
     color: #000;
+    height: inherit;
+    display: flex!important;
     justify-content: space-between;
+    align-items: center;
     transition: all 0.5s ease-in-out;
 }
 .navbar-brand:hover{
     opacity: 1;
 }
 .title-icon{
-    width:50px;
-    height:50px;
+    width:20px;
+    height:20px;
     padding-left: 50px;
 }
