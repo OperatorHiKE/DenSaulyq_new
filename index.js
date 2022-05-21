@@ -186,12 +186,16 @@ app.get('/login', (req, res) =>
 		res.sendFile(path.join(__dirname, 'html', 'login.html'))
 	}
 	else {
-		mongodb.getUser(loginOrEmail, password, (result) => {
-			res.render(path.join(__dirname, 'html', 'profile'),
-				{
-					user: result[0]
-				})
-		})
+		if(password == null) {
+			res.sendFile(path.join(__dirname, 'html', 'login.html'))
+		} else {
+			mongodb.getUser(loginOrEmail, password, (result) => {
+				res.render(path.join(__dirname, 'html', 'profile'),
+					{
+						user: result[0]
+					})
+			})
+		}
 	}
 })
 app.get('/quit', (req, res) =>

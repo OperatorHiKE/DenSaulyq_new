@@ -331,7 +331,7 @@ var createComment = function (user, comment, callback)
 }
 
 var getComment = function(loginOrEmail, callback) {
-	Comment.find({user: loginOrEmail}, (err, result) => {
+	Comment.find({}, (err, result) => {
 		return callback(JSON.parse(JSON.stringify(result)))
 	})
 }
