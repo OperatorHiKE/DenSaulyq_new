@@ -23,6 +23,7 @@ app.get('/', (req, res) =>
 	let loginOrEmail = req.cookies.login
 	let password = req.cookies.password
 	mongodb.getUser(loginOrEmail, password, (user) => {
+		console.log(user)
 		mongodb.getPlaces((result) => {
 			var adresses = []
 			var Xs = []
@@ -33,7 +34,6 @@ app.get('/', (req, res) =>
 				Ys.push(result[i].y)
 			}
 			mongodb.getComment(loginOrEmail, (comment) => {
-				console.log(comment)
 				res.render(path.join(__dirname, 'html', 'index'),
 					{
 						user: user[0],
@@ -276,11 +276,11 @@ app.post('/register', (req, res) =>
 		break
 
 	case 1:
-			res.send('1')
+			res.sendFile(path.join(__dirname, 'html', 'loginexist.html'))
 		break
 
 	case 2:
-			res.send('2')
+			res.sendFile(path.join(__dirname, 'html', 'emailexist.html'))
 		break
 	}
 	})
@@ -292,9 +292,9 @@ app.post('/login', (req, res) =>
 	mongodb.loginUser(loginOrEmail, password, (result) =>
 	{
 	if (result == 1)
-		res.send("l")
+		res.sendFile(path.join(__dirname, 'html', 'wrong_passwordpage.html'))
 	else if (result == 2)
-		res.send("r")
+		res.sendFile(path.join(__dirname, 'html', 'wrong_loginpage.html'))
 	else {
 		res.cookie('login', loginOrEmail)
 		res.cookie('password', password)
