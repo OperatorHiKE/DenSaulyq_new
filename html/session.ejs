@@ -20,7 +20,227 @@
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style/session.css">
+  <script>
+    var currentDay = <%=currentDay%>
+    const currentDat = <%=currentDat%> - 1
+    var currentMonth = <%=currentMonth%>
+    const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    var currentYear = <%=currentYear%>
+    var days = [0, 0, 0, 0, 0, 0, 0]
+    var currentDoctor = 0
 
+    const doctorses = ['Cardiologist', 'Proctologist', 'Pulmonologist', 'Emergency physicians', 'Psychiatrists', 'Neurologists', 'Radiologists', 'Pediatricians']
+    var Yearities = []
+    var Montheleties = []
+    var Dayeties = []
+    var Minites = []
+    var Horses = []
+
+    let decoded = '<%=timesStr%>'.replaceAll('&#34;', '"')
+    const data = JSON.parse(decoded)
+    for (var i = 0; i < doctorses.length; i++) {
+      let ys = []
+      let ms = []
+      let ds = []
+      for (var o = 0; o < data.length; o++) {
+        if (data[o].type == doctorses[i]) {
+          ys.push(data[o].years)
+          ms.push(data[o].months)
+          ds.push(data[o].days)
+          Horses.push(data[o].hours)
+          Minites.push(data[o].minutes)
+        }
+        console.log(data[o])
+      }
+      ys = ys.join(',')
+      ms = ms.join(',')
+      ds = ds.join(',')
+      Yearities.push(ys)
+      Montheleties.push(ms)
+      Dayeties.push(ds)
+    }
+    console.log(Minites, 5)
+
+    if (<%=isLeap%>) {
+      monthDays[1] = 29
+    } else {
+      monthDays[1] = 28
+    }
+
+    function prevDays()
+    {
+      currentDay -= 7
+      if (currentDay <= 0) {
+        currentMonth--
+        if (currentMonth < 0) {
+          currentMonth = 11
+          currentYear--
+        }
+        currentDay = monthDays[currentMonth] + currentDay
+      }
+      days[currentDat] = currentDay
+
+      //Change according to pivot
+      let sum = 1
+      for (var i = currentDat + 1; i < 7; i++) {
+        days[i] = currentDay + sum
+        sum++
+      }
+      sum = 1
+      for (var i = currentDat - 1; i >= 0; --i) {
+        if (currentDay <= 0) {
+          sum = monthDays[currentMonth + 1] + currentDay
+        }
+        days[i] = currentDay - sum
+        sum++
+      }
+      changeDays(days)
+    }
+
+    function nextDays()
+    {
+      currentDay += 7
+      if (currentDay > monthDays[currentMonth]) {
+        currentDay = currentDay - monthDays[currentMonth]
+        currentMonth++
+        if (currentMonth > 11) {
+          currentMonth = 0
+          currentYear++
+        }
+      }
+      days[currentDat] = currentDay
+      console.log(currentMonth, currentDay)
+
+      //Change according to pivot
+      let sum = 1
+      for (var i = currentDat + 1; i < 7; i++) {
+        if (currentDay + sum > monthDays[currentMonth]) {
+          sum = -currentDay + 1
+        }
+        days[i] = currentDay + sum
+        sum++
+      }
+      sum = 1
+      for (var i = currentDat - 1; i >= 0; --i) {
+        days[i] = currentDay - sum
+        sum++
+      }
+      changeDays(days)
+    }
+
+    function updateDays()
+    {
+      days[currentDat] = currentDay
+      let sum = 1
+      for (var i = currentDat + 1; i < 7; i++) {
+        if (currentDay + sum > monthDays[currentMonth]) {
+          sum = -currentDay + 1
+        }
+        days[i] = currentDay + sum
+        sum++
+      }
+      sum = 1
+      for (var i = currentDat - 1; i >= 0; --i) {
+        if (currentDay <= 0) {
+          sum = monthDays[currentMonth + 1] + currentDay
+        }
+        days[i] = currentDay - sum
+        sum++
+      }
+      changeDays(days)
+    }
+
+    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+    function changeDays()
+    {
+      updateAllButtons()
+      var parentDays = document.getElementsByClassName('days')
+      var dayFields = []
+      for (var i = 0; i < parentDays[currentDoctor].children.length; i++)
+        if (i != 0 && i != parentDays[currentDoctor].children.length - 1)
+          dayFields.push(parentDays[currentDoctor].children[i])
+      for (var i = 0; i < dayFields.length; i++)
+        dayFields[i].innerHTML = days[i]
+
+      document.getElementsByClassName('year')[currentDoctor].innerHTML = currentYear
+      document.getElementsByClassName('month')[currentDoctor].innerHTML = monthNames[currentMonth]
+    }
+
+    var activeButton
+    function setTimeField(w, ho, mi, id, i) {
+      let inputDoc = document.getElementById('exampleFormControlSelect2')
+      let input = document.getElementById('date')
+      input.value = currentYear + '-' + currentMonth + '-' + days[w] + ' ' + ho + ':' + mi + ':' + w
+      inputDoc.value = currentDoctor
+      if (activeButton)
+        activeButton.className = "order-free"
+      activeButton = document.getElementById(id)
+      activeButton.className = "order-free order-selected"
+    }
+
+    function show(index)
+    {
+      let schedules = document.getElementsByClassName('schedule')
+      for (let i = 0; i < schedules.length; i++)
+        if (i != index)
+          schedules[i].style.visibility = 'hidden'
+        else
+          schedules[i].style.visibility = 'visible'
+      currentDoctor = index
+      changeDays()
+    }
+
+    function updateAllButtons() {
+      for (var i = 16; i < 43; i++) {
+        for (var j = 0; j < 7; j++) {
+          let id = i * 100 + j * 10 + currentDoctor
+          id = id.toString()
+          let exe = false
+          for (var p = 0; p < Minites[currentDoctor].length; p++) {
+            const sumDoc = Minites[currentDoctor][p] + Horses[currentDoctor][p] * 60
+            if (isNaN(sumDoc))
+              continue
+            const sumButton = (i % 2) * 30 + Math.trunc(i / 2) * 60
+
+            if (sumButton - sumDoc >= 0 && sumButton - sumDoc <= 30)
+              exe = true;
+          }
+            if (exe) {
+              isExist(id, Yearities[currentDoctor], Dayeties[currentDoctor], Montheleties[currentDoctor], j)
+            }
+          }
+        }
+      }
+
+    function isExist(button, years, dayss, months, week)
+    {
+      let oky = []
+      let okm = []
+      let okd = []
+      let yearss = years.split(',')
+      let daysss = dayss.split(',')
+      let monthss = months.split(',')
+
+      for (var i = 0; i < yearss.length; i++) {
+        oky.push(parseInt(yearss[i]) == currentYear)
+        okm.push(parseInt(monthss[i]) == currentMonth)
+        okd.push(parseInt(daysss[i]) == days[week])
+      }
+
+      let free = true
+      for (var i = 0; i < oky.length; i++)
+        if (oky[i] && okm[i] && okd[i]) {
+          free = false
+          break
+        }
+
+      if (free) {
+        document.getElementById(button).className = 'order-free'
+      } else {
+        document.getElementById(button).className = 'order-exist'
+      }
+    }
+  </script>
 </head>
 
 <body id="top">
@@ -45,8 +265,101 @@
     </div>
   </div>
 </section>
+<div class="d-flex justify-content-center">
+<% const doctors = ['Cardiologist', 'Proctologist', 'Pulmonologist', 'Emergency physicians', 'Psychiatrists', 'Neurologists', 'Radiologists', 'Pediatricians'] %>
+<% const dates = ['Monday', 'Tuesday', 'Thirsday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %>
+<% for (var i = 0; i < doctors.length; i++) { %>
+<button onclick="show(<%=i%>)"><%=doctors[i]%></button>
+<div class="schedule">
+<h1><%=doctors[i]%></h1>
+<h2 class="month"></h2>
+<table style="width:100%">
+  <thead>
+  <tr scope="row">
+    <th class="year"></th>
+    <th><%=dates[0]%></th>
+    <th><%=dates[1]%></th>
+    <th><%=dates[2]%></th>
+    <th><%=dates[3]%></th>
+    <th><%=dates[4]%></th>
+    <th><%=dates[5]%></th>
+    <th><%=dates[6]%></th>
+  </tr>
+  <tr scope="row" class="days">
+    <th><button onclick="prevDays();"><</button></th>
+    <th>1</th>
+    <th>2</th>
+    <th>3</th>
+    <th>4</th>
+    <th>5</th>
+    <th>6</th>
+    <th>7</th>
+    <th><button onclick="nextDays();">></button></th>
+  </tr>
+  </thead>
+  <script>updateDays()</script>
+  <% for (var j = 16; j < 43; j++) { %>
+  <tr scope="row">
+    <th>
+    <%=Math.trunc(j / 2)%>
+      :
+    <% if ((j % 2)) { %>
+      30
+    <% } else { %>
+      00
+    <% } %>
+    </th>
+    <% for (var k = 0; k < dates.length; k++) { %>
+    <td>
+      <% let index = 0
+      let isExist = false
+      for (var o = 0; o < times.length; o++) {
+        if (times[o].type === doctors[i]) {
+          index = o
+          for (var p = 0; p < times[o].days.length; p++) {
+            if (times[o].date[p] != k)
+              continue
+            const sumDoc = times[o].minutes[p] + times[o].hours[p] * 60
 
-<section class="appoinment section">
+            if (isNaN(sumDoc) || isNaN(times[o].date[p]))
+              continue
+
+            const sumButton = (j % 2) * 30 + Math.trunc(j / 2) * 60
+
+            if (sumButton - sumDoc >= 0 && sumButton - sumDoc <= 30) {
+              isExist = true;
+              console.log(doctors[i], times[o])
+            }
+          }
+        } %>
+
+      <% } %>
+      <%
+        let years
+        let months
+        let days
+        if (times.length != 0) {
+          years = times[index].years
+          months = times[index].months
+          days = times[index].days
+        }
+      %>
+      <% if (isExist) { %>
+        <button id="<%=j * 100 + k * 10 + i%>" class="order-exist"></button>
+        <script>isExist('<%=j * 100 + k * 10 + i%>', '<%=years%>', '<%=days%>', '<%=months%>', <%=k%>);</script>
+      <% } else { %>
+        <button id="<%=j * 100 + k * 10 + i%>" class="order-free" onclick="setTimeField(<%=k%>, <%=(Math.trunc(j / 2))%>, <%=((j % 2) * 30)%>, '<%=j * 100 + k * 10 + i%>', <%=i%>);"></button>
+      <% } %>
+    </td>
+    <% } %>
+  </tr>
+  <% } %>
+</table>
+</div>
+<% } %>
+</div>
+
+<section class="appoinment section" style="margin-top: 600px;">
   <div class="container">
     <div class="row">
       <div class="col-lg-4">
@@ -94,30 +407,30 @@
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
-                  <select class="form-control" id="exampleFormControlSelect2" name="doctor">
+                  <select class="form-control" id="exampleFormControlSelect2" name="doctor" readonly>
                     <%if(docType == 0){%>
                     <option selected="selected">Select Doctors</option>
                     <%}%>
                       <%if(docType == 1){%>
-                        <option selected="selected">Cardiologist</option>
+                        <option value="0" selected="selected">Cardiologist</option>
                       <%} else {%>
-                        <option>Cardiologist</option>
+                        <option value="0">Cardiologist</option>
                       <%}%>
                       <%if(docType == 2){%>
-                        <option selected="selected">Proctologist</option>
+                        <option value="1" selected="selected">Proctologist</option>
                       <%} else {%>
-                        <option>Proctologist</option>
+                        <option value="1">Proctologist</option>
                       <%}%>
                       <%if(docType == 3){%>
-                        <option selected="selected">Pulmonologist</option>
+                        <option value="2" selected="selected">Pulmonologist</option>
                       <%} else {%>
-                        <option>Pulmonologist</option>
+                        <option value="2">Pulmonologist</option>
                       <%}%>
-                    <option>Emergency physicians</option>
-                    <option>Psychiatrists</option>
-                    <option>Neurologists</option>
-                    <option>Radiologists</option>
-                    <option>Pediatricians</option>
+                    <option value="3">Emergency physicians</option>
+                    <option value="4">Psychiatrists</option>
+                    <option value="5">Neurologists</option>
+                    <option value="6">Radiologists</option>
+                    <option value="7">Pediatricians</option>
 
                   </select>
                 </div>
@@ -125,14 +438,12 @@
 
               <div class="col-lg-6">
                 <div class="form-group">
-                  <input name="date" id="date" type="date" class="form-control" placeholder="dd/mm/yyyy" required>
+                  <input name="date" id="date" class="form-control" readonly required>
                 </div>
               </div>
 
               <div class="col-lg-6">
-                <div class="form-group">
-                  <input name="time" id="time" type="text" class="form-control" placeholder="Time" required>
-                </div>
+
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
@@ -231,6 +542,8 @@ Essential Scripts
 
 <script src="js/script.js"></script>
 <script src="js/contact.js"></script>
+
+<script>show(0);</script>
 
 </body>
 </html>
