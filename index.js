@@ -376,13 +376,14 @@ app.post('/changeUser', (req, res) =>
 	}
 })
 
+const doctorses = ['Cardiologist', 'Proctologist', 'Pulmonologist', 'Emergency physicians', 'Psychiatrists', 'Neurologists', 'Radiologists', 'Pediatricians']
 app.post('/session', (req,res) => {
 	let uname = req.cookies.login
 	if (uname === undefined || uname == '-1') {
 		res.redirect('login')
 	} else {
 		let department = req.body.department
-		let doctor = req.body.doctor
+		let doctor = doctorses[parseInt(req.body.doctor)]
 		let date = req.body.date
 		let name = req.body.name
 		let phone = req.body.phone

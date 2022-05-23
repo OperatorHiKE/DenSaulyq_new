@@ -30,14 +30,13 @@
     var currentDoctor = 0
 
     const doctorses = ['Cardiologist', 'Proctologist', 'Pulmonologist', 'Emergency physicians', 'Psychiatrists', 'Neurologists', 'Radiologists', 'Pediatricians']
-    const Yearities = []
-    const Montheleties = []
-    const Dayeties = []
-    const Minites = []
-    const Horses = []
+    var Yearities = []
+    var Montheleties = []
+    var Dayeties = []
+    var Minites = []
+    var Horses = []
 
     let decoded = '<%=timesStr%>'.replaceAll('&#34;', '"')
-    console.log(decoded, 1)
     const data = JSON.parse(decoded)
     for (var i = 0; i < doctorses.length; i++) {
       let ys = []
@@ -51,6 +50,7 @@
           Horses.push(data[o].hours)
           Minites.push(data[o].minutes)
         }
+        console.log(data[o])
       }
       ys = ys.join(',')
       ms = ms.join(',')
@@ -195,7 +195,6 @@
         for (var j = 0; j < 7; j++) {
           let id = i * 100 + j * 10 + currentDoctor
           id = id.toString()
-
           let exe = false
           for (var p = 0; p < Minites[currentDoctor].length; p++) {
             const sumDoc = Minites[currentDoctor][p] + Horses[currentDoctor][p] * 60
@@ -336,9 +335,14 @@
 
       <% } %>
       <%
-        let years = times[index].years
-        let months = times[index].months
-        let days = times[index].days
+        let years
+        let months
+        let days
+        if (times.length != 0) {
+          years = times[index].years
+          months = times[index].months
+          days = times[index].days
+        }
       %>
       <% if (isExist) { %>
         <button id="<%=j * 100 + k * 10 + i%>" class="order-exist"></button>

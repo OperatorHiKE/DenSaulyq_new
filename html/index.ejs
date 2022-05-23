@@ -50,10 +50,12 @@
 
   </head>
   <body>
-
+  <% if (user) { %>
   <% if(user.doctor) {%>
     <%- include('new_header.html') %>0x
   <%} else {%>
+    <%- include('header.html')%>
+  <%} } else { %>
     <%- include('header.html')%>
   <%}%>
 
