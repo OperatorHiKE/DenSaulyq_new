@@ -54,13 +54,13 @@ app.get('/chat', (req, res) =>
 {
 	mongodb.getDoctors((result) => {
 		let uname = req.cookies.login
-		if (uname === undefined || uname == '-1') {
+		if (uname === undefined || uname === '-1') {
 			res.sendFile(path.join(__dirname, 'html', 'login.html'))
 		} else {
 			var data = []
 			var isDoctor = false
 			for (var i = 0; i < result.length; i++) {
-				if (result[i].uname == uname)
+				if (result[i].uname === uname)
 					isDoctor = true
 				if (result[i].clients.includes(uname))
 					data.push(chat.getChat(uname, result[i].uname))
@@ -134,7 +134,7 @@ app.get('/session', (req, res) =>{
 	let docType = req.query.doc
 	console.log(docType)
 
-	if(docType == undefined) {
+	if(docType === undefined) {
 		docType = 0
 	}
 	res.render(path.join(__dirname, 'html', 'session'), {docType: docType})
@@ -182,7 +182,7 @@ app.get('/login', (req, res) =>
 {
 	let loginOrEmail = req.cookies.login
 	let password = req.cookies.password
-	if (loginOrEmail === undefined || loginOrEmail == '-1') {
+	if (loginOrEmail === undefined || loginOrEmail === '-1') {
 		res.sendFile(path.join(__dirname, 'html', 'login.html'))
 	}
 	else {
@@ -221,7 +221,7 @@ app.get('/appointment', (req, res) => {
 })
 app.get('/appointmentPanel', async (req, res) => {
 	let uname = req.cookies.login
-	if (uname === undefined || uname == '-1') {
+	if (uname === undefined || uname === '-1') {
 		res.redirect('login')
 	} else {
 		let isDoctor = await mongodb.getUserAsync(uname, req.cookies.password)
