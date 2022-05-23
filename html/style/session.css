@@ -1491,4 +1491,27 @@ a:focus {
     opacity: 1;
 }
 
+.schedule {
+    position: absolute;
+    overflow-y: scroll;
+    height: 600px;
+    margin-top: 60px;
+}
+
+.order-exist {
+    width: 120px;
+    height: 50px;
+    background-color: black;
+}
+
+.order-free {
+    width: 120px;
+    height: 50px;
+    background-color: cornflowerblue;
+}
+
+.order-selected {
+    background-color: red;
+}
+
 /*# sourceMappingURL=maps/style.css.map */
