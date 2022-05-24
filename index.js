@@ -23,7 +23,6 @@ app.get('/', (req, res) =>
 	let loginOrEmail = req.cookies.login
 	let password = req.cookies.password
 	mongodb.getUser(loginOrEmail, password, (user) => {
-		console.log(user)
 		mongodb.getPlaces((result) => {
 			var adresses = []
 			var Xs = []
@@ -34,6 +33,7 @@ app.get('/', (req, res) =>
 				Ys.push(result[i].y)
 			}
 			mongodb.getComment(loginOrEmail, (comment) => {
+				console.log(adresses)
 				res.render(path.join(__dirname, 'html', 'index'),
 					{
 						user: user[0],
@@ -48,7 +48,11 @@ app.get('/', (req, res) =>
 })
 app.get('/help', (req, res) =>
 {
-	res.render(path.join(__dirname, 'html', 'help'), {})
+	mongodb.getUser(req.cookies.login, req.cookies.password, (user) => {
+		res.render(path.join(__dirname, 'html', 'help'), {
+			user:user
+		})
+	})
 })
 app.get('/chat', (req, res) =>
 {
@@ -74,6 +78,7 @@ app.get('/chat', (req, res) =>
 					for (var i = 0; i < doctor[0].clients.length; i++) {
 						data.push(chat.getChat(doctor[0].clients[i], doctor[0].uname))
 					}
+					console.log(doctor)
 					res.render(path.join(__dirname, 'html', 'chat'),
 						{
 							uname: uname,
