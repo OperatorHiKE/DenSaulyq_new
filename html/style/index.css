@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Avenir';
-  src: url('fonts/AvenirLTStd-Book.otf');
+  src: url('../fonts/AvenirLTStd-Book.otf');
 }
 
 #map {
@@ -12,7 +12,7 @@
 
 body{
   background-color: #FFFFEA !important;
-  font-family: 'Open Sans';
+  font-family: 'Open Sans', serif;
   font-weight: 300;
   font-size: 20px;
   color: #000000;
@@ -24,7 +24,7 @@ body{
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Rozha One';
+  font-family: 'Rozha One', serif;
   font-weight: 250;
   color: #000000;
 }
@@ -57,39 +57,8 @@ hr{
   padding: 0;
 }
 
-.navbar{
-  font-weight: 500;
-  font-size: 15px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  background: #FFFFEA;
-  margin: auto;
-}
-
-.navbar-inverse{
-  background: #FFFFEA;
-  border-color: #FFFFEA;
-}
-
-.navbar-inverse .navbar-nav > .active > a {
-  background-color: #FFFFEA;
-}
-
-.nav-link {
-  background: #FFFFEA;
-  background-color: #FFFFEA;
-}
-
-.navbar-inverse .navbar-brand{
-  color: #000000;
-  font-weight: bolder;
-  font-size: 22px;
-  letter-spacing: 1px;
-  alignment-content: left;
-}
-
 #headerwrap {
-  background-image: url('icons/icon2.jpg');
+  background-image: url(../icons/icon2.jpg);
   background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
@@ -97,35 +66,67 @@ hr{
   margin-top: -10px;
   padding-top: 70px;
   padding-bottom: 60px;
-  /*text-align: center;*/
+  border: 1px solid black;
   -webkit-background-size: cover;
+}
+#headerwrap a{
+  border-radius: 100px;
+  margin: -5px;
+  font-size: 16px;
 }
 
 .card-title {
-  font-family: 'Rozha One';
+  font-family: 'Rozha One', serif;
   /* width: 35%; */
   color: #000000;
-  font-size: 40px;
+  font-size: 50px;
   font-weight: 700;
   letter-spacing: 1px;
+  line-height: 55px;
 }
 
 .card-text {
-  font-family: 'Avenir';
+  font-family: 'Avenir', serif;
   color: black;
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 2px;
   padding-bottom: 20px;
 }
 
-#doc {
-  margin-top: 70px;
-  padding-top: 20px;
-  text-align: center;
+/* ========================================================================= */
+.features-1 {
+  margin-top: 50px;
 }
 
+.feature-item {
+  flex-basis: 33.33%;
+  margin: 0px 10px;
+  padding: 40px 30px;
+  background-color: #fff;
+  border-radius: 15px 15px 15px 15px;
+  box-shadow: 0px 0px 30px 0px rgba(0, 42, 106, 0.1);
+}
+
+.feature-item .feature-icon i {
+  font-size: 50px;
+  color: #223a66;
+}
+
+.feature-item h4 {
+  color: #223a66;
+}
+
+.feature-item p {
+  font-size: 14px;
+}
+
+.feature-section.border-top {
+  border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+/*==========================================================================*/
+
 .MeetOurDocs h1{
-  font-family: 'Rozha One';
+  font-family: 'Rozha One', serif;
   width: 100%;
   color: #000000;
   font-size: 40px;
@@ -134,25 +135,15 @@ hr{
   text-align: center;
   padding-top: 100px;
 }
-.MeetOurDocs h1{
-  font-family: 'Rozha One';
-  width: 100%;
-  color: #000000;
-  font-size: 40px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-align: center;
-  padding-top: 150px;
-}
 
 #doc {
   margin-top: 70px;
-  padding-top: 30px;
+  padding-top: 20px;
   text-align: center;
 }
 
 #doc p{
-  font-family: 'Avenir';
+  font-family: 'Avenir', serif;
   font-size: 18px;
   font-weight: 100;
   color: #000000;
@@ -164,27 +155,38 @@ hr{
 #doc a{
   border-radius: 25px;
 }
+
+/*============================================================*/
+
 .HowItWorks h1{
-  font-family: 'Rozha One';
+  font-family: 'Rozha One', serif;
   width: 100%;
   color: #000000;
   font-size: 40px;
   font-weight: 700;
   letter-spacing: 1px;
   text-align: center;
-  padding-top: 100px;
+  padding-top: 150px;
 }
 
 .HowItWorks p{
   padding-top: 70px;
-  font-family: 'Avenir';
+  padding-bottom: 80px;
+  font-family: 'Avenir', serif;
   color: black;
   font-size: 20px;
   letter-spacing: 1.7px;
   text-align: center;
 }
 
+/*===============================================================*/
 
+.features{
+  border: 1px solid black;
+  border-radius: 20px;
+  margin: 5% 10% 5% 10%;
+}
+/*===================================================================*/
 
 .PatientsReviews {
   padding-top: 100px;
@@ -192,15 +194,10 @@ hr{
 }
 
 .carousel-item{
-  font-family: 'Avenir';
+  font-family: 'Avenir', serif;
   color: black;
   font-size: 15px;
   letter-spacing: 1.7px;
-}
-
-
-.weewee{
-  size: large;
 }
 
 .btn-primary {
@@ -236,165 +233,24 @@ hr{
   display: inline;
 }
 
-/* ==================================================================== */
-
-#headerwrap {
-  background-image: url('icons/icon2.jpg');
-  background-attachment: fixed;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-top: -10px;
-  padding-top: 70px;
-  padding-bottom: 60px;
-  border: 1px solid black;
-  /*text-align: center;*/
-  -webkit-background-size: cover;
-}
-
-#headerwrap a{
-  border-radius: 100px;
-  margin: -5px;
-  font-size: 16px;
-}
-
-.card-title {
-  font-family: 'Rozha One';
-  /* width: 35%; */
-  color: #000000;
-  font-size: 50px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  line-height: 55px;
-}
-
-.card-text {
-  font-family: 'Avenir';
-  color: black;
-  font-size: 18px;
-  letter-spacing: 2px;
-  padding-bottom: 20px;
-}
-
-/* ========================================================================= */
-.MeetOurDocs h1{
-  font-family: 'Rozha One';
-  width: 100%;
-  color: #000000;
-  font-size: 40px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-align: center;
-  padding-top: 150px;
-}
-
-#doc {
-  margin-top: 70px;
-  padding-top: 30px;
-  text-align: center;
-}
-
-#doc p{
-  font-family: 'Avenir';
-  font-size: 18px;
-  font-weight: 100;
-  color: #000000;
-  letter-spacing: 1px;
-  text-align: center;
-  padding-top: 13px;
-}
-
-#doc a{
-  border-radius: 25px;
-}
-/* ========================================================================= */
-
-.HowItWorks h1{
-  font-family: 'Rozha One';
-  width: 100%;
-  color: #000000;
-  font-size: 40px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-align: center;
-  padding-top: 150px;
-}
-
-.HowItWorks p{
-  padding-top: 70px;
-  padding-bottom: 80px;
-  font-family: 'Avenir';
-  color: black;
-  font-size: 20px;
-  letter-spacing: 1.7px;
-  text-align: center;
-}
-
-/* #Slider {
-  background-image: url('icons/bcg.png');
-  background-position: center center;
-  border: 1px solid black;
-
-  -webkit-background-size: cover;
-} */
-
-/* ========================================================================= */
-
 .features{
   border: 1px solid black;
   border-radius: 20px;
   margin: 5% 10% 5% 10%;
 }
 
-/* ========================================================================= */
+/* slider css =================================================================*/
+
 #PatientReviews1 h1{
-  font-family: 'Rozha One';
+  font-family: 'Rozha One', serif;
   width: 100%;
-  color: #000000;
   font-size: 40px;
   font-weight: 700;
   letter-spacing: 1px;
   text-align: center;
   padding-top: 50px;
-}
-/* ========================================================================= */
-
-#carousel{
-  padding: 0 25% 0 25%;
-}
-
-.carousel-item h6{
-  text-align: center;
-}
-
-.PatientsReviews {
-  padding-top: 50px;
   padding-bottom: 100px;
 }
-
-.carousel-item{
-  font-family: 'Avenir';
-  color: black;
-  font-size: 15px;
-  letter-spacing: 1.7px;
-}
-
-/* ========================================================================= */
-
-.list-unstyled{
-  font-size: 15px;
-}
-
-.page-footer p{
-  font-size: 14px;
-  padding-top: 10px;
-}
-
-.page-footer{
-  padding-top: 80px;
-}
-
-/* slider css =================================================================*/
 
 .width-auto {
   width: auto;
@@ -404,42 +260,21 @@ hr{
   font-size: 2rem;
 }
 
-.carousel-indicators li {
-  border: none;
-  background: #ccc;
+/* ========================================================================= */
+
+.list-unstyled{
+  font-size: 15px;
+  padding-top: 10px;
+  text-align: justify-all;
 }
 
-.carousel-indicators li.active {
-  background: #28a745;
-}
-
-/* */
-.features-1 {
-  margin-top: -50px;
-}
-
-.feature-item {
-  flex-basis: 33.33%;
-  margin: 0px 10px;
-  padding: 40px 30px;
-  background-color: #fff;
-  border-radius: 15px 15px 15px 15px;
-  box-shadow: 0px 0px 30px 0px rgba(0, 42, 106, 0.1);
-}
-
-.feature-item .feature-icon i {
-  font-size: 50px;
-  color: #223a66;
-}
-
-.feature-item h4 {
-  color: #223a66;
-}
-
-.feature-item p {
+.page-footer p{
   font-size: 14px;
+  padding-top: 10px;
+  text-align: start;
 }
 
-.feature-section.border-top {
-  border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+.page-footer{
+  padding-top: 80px;
 }
+

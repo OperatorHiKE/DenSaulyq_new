@@ -28,8 +28,8 @@ tr {
     height: 96px!important;
 }
 button {
-    width: 64px!important;
-    height: 64px!important;
+    width: 45px!important;
+    height: 45px!important;
 }
 .btn-outline-secondary, .btn-outline-secondary:focus, .btn-outline-secondary:hover {
     background-color: white!important;
@@ -46,12 +46,12 @@ input {
     border: none!important;
 }
 i {
-    font-size: 32px;
+    font-size: 25px;
 }
 
 .card {
-    width: 100%;
-    background-color: #efefef;
+    width: 80%;
+    background-color: #FFFFEA;
     border: none;
     cursor: pointer;
     transition: all 0.5s;
@@ -75,7 +75,7 @@ i {
 }
 
 .name {
-    font-size: 22px;
+    font-size: 14px;
     font-weight: bold
 }
 
@@ -89,7 +89,8 @@ i {
 }
 
 .number {
-    font-size: 22px;
+    font-family: 'Rozha One', serif ;
+    font-size: 20px;
     font-weight: bold
 }
 
@@ -142,15 +143,22 @@ hr .new1 {
 }
 
 /*===================================================*/
+.CentralLine1{
+    background-color: #EAA871;
+    border-radius: 40px;
+    width: 700px;
+    height: 760px;
+    margin: 50px auto;
+    border: 1px solid black;
+}
 
-
-.CentralLine{
-    border-color: black;
-    background-color: whitesmoke;
-    padding: 20px;
+.CentralLine2{
+    background-color: #ffffff;
+    padding: 40px;
     border-radius: 20px;
     width: 600px;
-    margin: 100px auto;
+    margin: 50px auto;
+    border: 1px solid black;
 }
 
 .photo{
@@ -165,12 +173,12 @@ hr .new1 {
 
 .PersonalData{
     font-size: 20px;
-
 }
 
 .nothing {
-    font-size: 12px;
+    font-size: 13.5px;
     list-style-type: none;
+
 }
 .illnessBox{
     margin-top: 20px;
@@ -186,4 +194,15 @@ hr .new1 {
 }
 small{
     text-align: center;
+}
+
+.Change h2{
+    font-family: 'Rozha One', serif;
+    width: 100%;
+    color: #000000;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+    padding-top: 50px;
 }

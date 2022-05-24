@@ -23,7 +23,6 @@ app.get('/', (req, res) =>
 	let loginOrEmail = req.cookies.login
 	let password = req.cookies.password
 	mongodb.getUser(loginOrEmail, password, (user) => {
-		console.log(user)
 		mongodb.getPlaces((result) => {
 			var adresses = []
 			var Xs = []
@@ -34,6 +33,7 @@ app.get('/', (req, res) =>
 				Ys.push(result[i].y)
 			}
 			mongodb.getComment(loginOrEmail, (comment) => {
+				console.log(adresses)
 				res.render(path.join(__dirname, 'html', 'index'),
 					{
 						user: user[0],
@@ -48,19 +48,23 @@ app.get('/', (req, res) =>
 })
 app.get('/help', (req, res) =>
 {
-	res.render(path.join(__dirname, 'html', 'help'), {})
+	mongodb.getUser(req.cookies.login, req.cookies.password, (user) => {
+		res.render(path.join(__dirname, 'html', 'help'), {
+			user:user
+		})
+	})
 })
 app.get('/chat', (req, res) =>
 {
 	mongodb.getDoctors((result) => {
 		let uname = req.cookies.login
-		if (uname === undefined || uname == '-1') {
+		if (uname === undefined || uname === '-1') {
 			res.sendFile(path.join(__dirname, 'html', 'login.html'))
 		} else {
 			var data = []
 			var isDoctor = false
 			for (var i = 0; i < result.length; i++) {
-				if (result[i].uname == uname)
+				if (result[i].uname === uname)
 					isDoctor = true
 				if (result[i].clients.includes(uname))
 					data.push(chat.getChat(uname, result[i].uname))
@@ -74,6 +78,7 @@ app.get('/chat', (req, res) =>
 					for (var i = 0; i < doctor[0].clients.length; i++) {
 						data.push(chat.getChat(doctor[0].clients[i], doctor[0].uname))
 					}
+					console.log(doctor)
 					res.render(path.join(__dirname, 'html', 'chat'),
 						{
 							uname: uname,
@@ -133,7 +138,7 @@ app.get('/features', (req, res) =>
 app.get('/session', async (req, res) =>{
 	let docType = req.query.doc
 
-	if(docType == undefined) {
+	if(docType === undefined) {
 		docType = 0
 	}
 
@@ -201,7 +206,7 @@ app.get('/login', (req, res) =>
 {
 	let loginOrEmail = req.cookies.login
 	let password = req.cookies.password
-	if (loginOrEmail === undefined || loginOrEmail == '-1') {
+	if (loginOrEmail === undefined || loginOrEmail === '-1') {
 		res.sendFile(path.join(__dirname, 'html', 'login.html'))
 	}
 	else {
@@ -240,7 +245,7 @@ app.get('/appointment', (req, res) => {
 })
 app.get('/appointmentPanel', async (req, res) => {
 	let uname = req.cookies.login
-	if (uname === undefined || uname == '-1') {
+	if (uname === undefined || uname === '-1') {
 		res.redirect('login')
 	} else {
 		let isDoctor = await mongodb.getUserAsync(uname, req.cookies.password)

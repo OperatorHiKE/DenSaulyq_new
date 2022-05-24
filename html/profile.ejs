@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <title></title>
     <!-- bootstrap css -->
-    <link rel="stylesheet" type="text/css" href="profile.css">
+    <link rel="stylesheet" type="text/css" href="style/profile.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<%- include('new_header.html') %>
-<div class="CentralLine">
+<%- include('header.html') %>
+<div class="CentralLine1">
+    <div class="CentralLine2">
     <!--First line of Personal Paper and Settings-->
     <div class="d-flex">
         <div class="p-2 w-100"><h4>Personal Page</h4></div>
@@ -32,10 +33,10 @@
 
         <div class="p-2 flex-fill text-center">
             <div class="PersonalData">
-                <label>Personal Data</label>
+                <label style="font-weight: bolder;">Personal Data</label>
                 <ul class="nothing">
                     <li ><strong>Personal Doctor: </strong><p id="MyDoctorId"><!--Пока что тут будет текст-->Sam Onella</p>
-                    <li ><strong>Registred Hospital: </strong><p id="MyHodpitslId"><!--Пока что тут будет текст-->Hospital №4</p>
+                    <li ><strong>Registered Hospital: </strong><p id="MyHospitalId"><!--Пока что тут будет текст-->Hospital №4</p>
                     <li ><strong>Blood Group: </strong><p id="MyBloodGroupId"><!--Пока что тут будет текст-->3 positive</p>
                 </ul>
             </div>
@@ -51,15 +52,19 @@
         </ul>
     </div>
 </div>
+</div>
+
+<div class="Change">
+    <h2>Change Your Data</h2>
+</div>
+
+<!--        <% if (user.vip) { %>-->
+<!--        <div class="card p-4 vipCard">-->
+<!--            <div class="d-flex flex-row justify-content-center align-items-center gap-2"><i class="fa-solid fa-crown"></i></div>-->
+<!--        <% } else { %>-->
+<!--            <div class="card p-4 ">-->
+<!--        <% } %>-->
 <div class="container mt-4 mb-4 p-3 d-flex justify-content-center" >
-
-    <!--    <% if (user.vip) { %>-->
-    <!--    <div class="card p-4 vipCard">-->
-    <!--        <div class="d-flex flex-row justify-content-center align-items-center gap-2"><i class="fa-solid fa-crown"></i></div>-->
-    <!--    <% } else { %>-->
-    <!--        <div class="card p-4 ">-->
-    <!--    <% } %>-->
-
     <div class="card p-4 static">
         <div id="ChangeData">
             <table>
@@ -128,8 +133,8 @@
                 </tr>
                 </tbody>
             </table>
-            <form action="/quit" method="get">
-                <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-right-from-bracket"></i></button>
+            <form action="/quit" method="get" style="text-align: center;">
+                <h5><button class="btn" type="submit"><i class="fa-solid fa-right-from-bracket"></i></button> Log Out</h5>
             </form>
         </div>
     </div>

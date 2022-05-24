@@ -1371,15 +1371,6 @@ a:focus {
     right: 15px;
     top: 35%;
 }
-
-.footer {
-    padding-bottom: 10px;
-}
-
-.footer .copyright a {
-    font-weight: 600;
-}
-
 .lh-35 {
     line-height: 35px;
 }
@@ -1403,38 +1394,6 @@ a:focus {
 
 .widget h4 {
     color: #223a66;
-}
-
-.widget .footer-menu a {
-    color: #6F8BA4;
-}
-
-.widget .footer-menu a:hover {
-    color: #e12454;
-}
-
-.footer-contact-block span {
-    font-weight: 400;
-    color: #6F8BA4;
-}
-
-.footer-contact-block i {
-    font-size: 20px;
-}
-
-.footer-btm {
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.footer-socials li a {
-    width: 45px;
-    height: 45px;
-    background: #6F8BA4;
-    color: #fff;
-    display: inline-block;
-    text-align: center;
-    border-radius: 100%;
-    padding-top: 12px;
 }
 
 .widget-contact h6 {
@@ -1490,6 +1449,24 @@ a:focus {
     cursor: pointer;
     opacity: 1;
 }
+/* ========================================================================= */
+
+.list-unstyled{
+    font-size: 15px;
+    padding-top: 10px;
+    text-align: justify-all;
+}
+
+.page-footer p{
+    font-size: 14px;
+    padding-top: 10px;
+    text-align: start;
+}
+
+.page-footer{
+    padding-top: 80px;
+}
+
 
 .schedule {
     position: absolute;
