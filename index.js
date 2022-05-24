@@ -145,7 +145,7 @@ app.get('/session', async (req, res) =>{
 	let currentDay = date.getDate()
 	let currentMonth = date.getMonth() + 1
 	let days = mongodb.calculateWeek(currentDat - 1, currentDay, ((0 == year % 4) && (0 != year % 100) || (0 == year % 400)), currentMonth)
-	console.log(times)
+	console.log(days)
 	res.render(path.join(__dirname, 'html', 'session'), {
 		docType: docType,
 		times: times,

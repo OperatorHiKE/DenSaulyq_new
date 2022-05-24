@@ -196,15 +196,16 @@
           let id = i * 100 + j * 10 + currentDoctor
           id = id.toString()
           let exe = false
-          for (var p = 0; p < Minites[currentDoctor].length; p++) {
-            const sumDoc = Minites[currentDoctor][p] + Horses[currentDoctor][p] * 60
-            if (isNaN(sumDoc))
-              continue
-            const sumButton = (i % 2) * 30 + Math.trunc(i / 2) * 60
-
-            if (sumButton - sumDoc >= 0 && sumButton - sumDoc <= 30)
-              exe = true;
-          }
+            for (var p = 0; p < Minites.length; p++) {
+              const sumDoc = Minites[currentDoctor] + Horses[currentDoctor] * 60
+              if (isNaN(sumDoc))
+                continue
+              const sumButton = (i % 2) * 30 + Math.trunc(i / 2) * 60
+              if (sumButton - sumDoc >= 0 && sumButton - sumDoc <= 30)
+                exe = true;
+            }
+            if (id === '1710')
+              console.log(Minites, Horses, 1710)
             if (exe) {
               isExist(id, Yearities[currentDoctor], Dayeties[currentDoctor], Montheleties[currentDoctor], j)
             }
@@ -226,14 +227,12 @@
         okm.push(parseInt(monthss[i]) == currentMonth)
         okd.push(parseInt(daysss[i]) == days[week])
       }
-
       let free = true
       for (var i = 0; i < oky.length; i++)
         if (oky[i] && okm[i] && okd[i]) {
           free = false
           break
         }
-
       if (free) {
         document.getElementById(button).className = 'order-free'
       } else {
@@ -328,7 +327,6 @@
 
             if (sumButton - sumDoc >= 0 && sumButton - sumDoc <= 30) {
               isExist = true;
-              console.log(doctors[i], times[o])
             }
           }
         } %>
