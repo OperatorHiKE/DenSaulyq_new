@@ -34,6 +34,7 @@ var newUser = function(uname, email, password, name, surname, IIN, phone)
 	user.phone = phone
 	user.requestIds = []
 	user.vip = false
+	user.doctor = false
 	user.save((err, doc) =>
 	{
 		if (!err)
@@ -358,6 +359,74 @@ var getComment = function(loginOrEmail, callback) {
 	})
 }
 
+var getTimes = async function()
+{
+	let appointments = await Appointment.find({}).lean()
+	let dates = []
+
+	for (var i = 0; i < appointments.length; i++)
+	{
+		let doctor = {
+			type: appointments[i].doctor,
+			minutes: [],
+			hours: [],
+			days: [],
+			months: [],
+			years: [],
+			date: []
+		}
+
+		let isExist = false
+		for (var j = 0; j < dates.length; j++) {
+			if (dates[j].type === doctor.type)
+				isExist = true
+		}
+
+		if (isExist)
+			continue
+
+		let apps = await Appointment.find({ doctor: doctor.type }).lean()
+		for (var j = 0; j < apps.length; j++) {
+			let date = new Date(apps[j].date)
+			let time = apps[j].time.split(':')
+			doctor.minutes.push(parseInt(time[1]))
+			doctor.hours.push(parseInt(time[0]))
+			doctor.days.push(date.getDate())
+			doctor.months.push(date.getMonth() + 1)
+			doctor.years.push(date.getFullYear())
+			doctor.date.push(parseInt(time[2]))
+		}
+		dates.push(doctor)
+	}
+	return dates
+}
+
+function calculateWeek(currentDat, currentDay, isLeap, currentMonth)
+{
+	const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+	if (isLeap)
+		monthDays[1] = 29
+	let days = [0, 0, 0, 0, 0, 0, 0]
+	days[currentDat] = currentDay
+	let sum = 1
+	for (var i = currentDat + 1; i < 7; i++) {
+		if (currentDay + sum > monthDays[currentMonth]) {
+			sum = -currentDay + 1
+		}
+		days[i] = currentDay + sum
+		sum++
+	}
+	sum = 1
+	for (var i = currentDat - 1; i >= 0; --i) {
+		if (currentDay <= 0) {
+			sum = monthDays[currentMonth + 1] + currentDay
+		}
+		days[i] = currentDay - sum
+		sum++
+	}
+	return days
+}
+
 module.exports =
 	{
 		newUser: newUser,
@@ -381,5 +450,8 @@ module.exports =
 		getAppointments: getAppointments,
 		deleteClientChat: deleteClientChat,
 		createComment: createComment,
-		getComment: getComment
+		getComment: getComment,
+		getComment: getComment,
+		getTimes: getTimes,
+		calculateWeek: calculateWeek
 	}

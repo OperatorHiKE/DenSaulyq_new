@@ -5,7 +5,7 @@ const cookie     = require('cookie-parser')
 const ejs        = require('ejs')
 const mongodb    = require('./mongodb.js')
 const chat       = require('./chat.js')
-const {getUser} = require("./mongodb");
+const {getUser, getTimes} = require("./mongodb");
 
 global.TextEncoder = require("util").TextEncoder
 global.TextDecoder = require("util").TextDecoder
@@ -130,14 +130,47 @@ app.get('/features', (req, res) =>
 {
 	res.render(path.join(__dirname, 'html', 'features'), {})
 })
-app.get('/session', (req, res) =>{
+app.get('/session', async (req, res) =>{
 	let docType = req.query.doc
-	console.log(docType)
 
 	if(docType === undefined) {
 		docType = 0
 	}
-	res.render(path.join(__dirname, 'html', 'session'), {docType: docType})
+
+	let times = await mongodb.getTimes()
+	let date = new Date()
+	let year = date.getFullYear()
+
+	let currentDat = date.getDay()
+	let currentDay = date.getDate()
+	let currentMonth = date.getMonth() + 1
+	let days = mongodb.calculateWeek(currentDat - 1, currentDay, ((0 == year % 4) && (0 != year % 100) || (0 == year % 400)), currentMonth)
+	console.log(times)
+	mongodb.getPlaces((result) => {
+		var adresses = []
+		var Xs = []
+		var Ys = []
+		for (var i = 0; i < result.length; i++) {
+			adresses.push(result[i].adress)
+			Xs.push(result[i].x)
+			Ys.push(result[i].y)
+		}
+		console.log(result)
+		res.render(path.join(__dirname, 'html', 'session'), {
+			docType: docType,
+			times: times,
+			timesStr: JSON.stringify(times),
+			currentDay: currentDay,
+			currentMonth: currentMonth,
+			isLeap: ((0 == year % 4) && (0 != year % 100) || (0 == year % 400)),
+			currentDat: currentDat,
+			currentYear: year,
+			week: days,
+			adresses: adresses,
+			coordsX: Xs,
+			coordsY: Ys
+		})
+	})
 })
 app.get('/index.css', (req, res) =>
 {
@@ -357,27 +390,32 @@ app.post('/changeUser', (req, res) =>
 	}
 })
 
+const doctorses = ['Cardiologist', 'Proctologist', 'Pulmonologist', 'Emergency physicians', 'Psychiatrists', 'Neurologists', 'Radiologists', 'Pediatricians']
 app.post('/session', (req,res) => {
 	let uname = req.cookies.login
 	if (uname === undefined || uname == '-1') {
 		res.redirect('login')
 	} else {
 		let department = req.body.department
-		let doctor = req.body.doctor
+		let doctor = doctorses[parseInt(req.body.doctor)]
 		let date = req.body.date
-		let time = req.body.time
 		let name = req.body.name
 		let phone = req.body.phone
 		let message = req.body.message
 		let fromPanel = req.body.fromPanel
+		if (date === '') {
+			res.send('Please, choose time in time table!')
+		} else {
+			date = date.split(' ')
 
-		mongodb.makeAppointment(department, doctor, date, time, name, phone, message, (result) => {
-			if (fromPanel) {
-				res.redirect('/appointmentPanel')
-			} else {
-				res.redirect('/appointment')
-			}
-		})
+			mongodb.makeAppointment(department, doctor, date[0], date[1], name, phone, message, (result) => {
+				if (fromPanel) {
+					res.redirect('/appointmentPanel')
+				} else {
+					res.redirect('/appointment')
+				}
+			})
+		}
 	}
 })
 
